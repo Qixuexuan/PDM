@@ -14,14 +14,14 @@
     <script src="js/business/tool.js"></script>
 
     <style>
-        #box {
-            height: 100%;
+        .box {
+            /*height: 100%;*/
             /*background-color: antiquewhite;*/
-            border: 1px solid lightgray;
+            /*border: 1px solid lightgray;*/
         }
         
         .ibox {
-            margin-top: 30px;
+            margin-top: 15px;
         }
         
         .title {
@@ -51,21 +51,235 @@
         }
         
         .content {
-            height: 200px;
+            /*height: 200px;*/
             width: 100%;
             border-top: 1px solid #e7eaec;
             background-color: #fff;
+            text-align: center;
+            padding-top: 10px;
+            padding-bottom: 15px;
         }
     </style>
 </head>
 
-<body>
+<body style="background-color:#f3f3f4">
 
-    <div id="box" class="container">
+    <div class="container box">
         <div class="row ibox">
             <div class="col-md-12">
                 <div class="title">
                     <h5>基本信息</h5>
+                    <span class="glyphicon glyphicon-chevron-up"></span>
+                </div>
+                <div class="content">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-3 control-label">项目编号</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="inputEmail3" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">客户名称</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="inputPassword3" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">客户类别</label>
+                            <div class="col-sm-3">
+                                <select class="form-control">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select>
+                            </div>
+                             <div class="col-sm-4">
+                                <select class="form-control">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">客户规模</label>
+                            <div class="col-sm-7">
+                                <select class="form-control">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">成立时间</label>
+                            <div class="col-sm-7">
+                                <select class="form-control">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">联系方式 </label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="inputPassword3" placeholder="">
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row ibox">
+            <div class="col-md-12">
+                <div class="title">
+                    <h5>详细信息</h5>
+                    <span class="glyphicon glyphicon-chevron-up"></span>
+                </div>
+                <div class="content">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">项目名称 </label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="inputPassword3" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">帐期 </label>
+                            <div class="col-sm-3">
+                                <select class="form-control">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select>
+                            </div>
+                             <div class="col-sm-4">
+                                <select class="form-control">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">交付方式 </label>
+                            <div class="col-sm-7">
+                                <select class="form-control">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">FOT时间 </label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="inputPassword3" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">PPAP时间 </label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="inputPassword3" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">项目周期 </label>
+                            <div class="col-sm-7">
+                                <select class="form-control">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">所需资源 </label>
+                            <div class="col-sm-7">
+                                <select class="form-control">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">利润率 </label>
+                            <div class="col-sm-7">
+                                <select class="form-control">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">制造难度 </label>
+                            <div class="col-sm-7">
+                                <select class="form-control">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">回复期限 </label>
+                            <div class="col-sm-7">
+                                <select class="form-control">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">项目描述 </label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="inputPassword3" placeholder="">
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row ibox">
+            <div class="col-md-12">
+                <div class="title">
+                    <h5>审核信息</h5>
                     <span class="glyphicon glyphicon-chevron-up"></span>
                 </div>
                 <div class="content">
@@ -75,8 +289,10 @@
             </div>
 
         </div>
-
     </div>
+
+
+
 
 
 </body>
