@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Tiled map service</title>
+    <link href="favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="js/bootstrap/css/bootstrap.min.css">
+
+    <script src="js/jquery/jquery-3.0.0.min.js"></script>
+    <script src="js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/business/tool.js"></script>
+
+    <script>
+        let _rootconfig;
+        const CONST_CONFIG_PATH = "config/root.config.json"
+        $.get(CONST_CONFIG_PATH, function(data) {
+            _rootconfig = data;
+        });
+    </script>
+</head>
+
+<body>
+
+
+</body>
+
+</html>
