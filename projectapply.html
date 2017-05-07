@@ -6,20 +6,15 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>立项申请 </title>
     <link href="favicon.ico" rel="icon" type="image/x-icon" />
-    <link rel="stylesheet" href="css/common.css">
+
     <link rel="stylesheet" href="js/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
 
     <script src="js/jquery/jquery-3.0.0.min.js"></script>
     <script src="js/bootstrap/js/bootstrap.min.js"></script>
-    <script src="js/business/tool.js"></script>
+    <script src="js/business/projApply.js"></script>
 
     <style>
-        .box {
-            /*height: 100%;*/
-            /*background-color: antiquewhite;*/
-            /*border: 1px solid lightgray;*/
-        }
-        
         .ibox {
             margin-top: 15px;
         }
@@ -64,7 +59,11 @@
 
 <body style="background-color:#f3f3f4">
 
-    <div class="container box">
+    <div class="container">
+
+        <div class="page-header">
+            <h1>立项申请 <small>星诺奇科技</small></h1>
+        </div>
         <div class="row ibox">
             <div class="col-md-12">
                 <div class="title">
@@ -74,67 +73,43 @@
                 <div class="content">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-3 control-label">项目编号</label>
+                            <label for="ProjectNO" class="col-sm-3 control-label">项目编号</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputEmail3" placeholder="">
+                                <input id="ProjectNO" type="text" class="form-control" placeholder="">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-3 control-label">客户名称</label>
+                            <label for="CustomerName" class="col-sm-3 control-label">客户名称</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputPassword3" placeholder="">
+                                <input id="CustomerName" type="text" class="form-control" placeholder="">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-3 control-label">客户类别</label>
+                            <label for="ObjType" class="col-sm-3 control-label">客户类别</label>
                             <div class="col-sm-3">
-                                <select class="form-control">
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-  <option>5</option>
-</select>
+                                <select id="ObjType" class="form-control"></select>
                             </div>
-                             <div class="col-sm-4">
-                                <select class="form-control">
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-  <option>5</option>
-</select>
+                            <div class="col-sm-4">
+                                <select id="HostType" class="form-control"></select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-3 control-label">客户规模</label>
+                            <label for="CustomerSize" class="col-sm-3 control-label">客户规模</label>
                             <div class="col-sm-7">
-                                <select class="form-control">
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-  <option>5</option>
-</select>
+                                <select id="CustomerSize" class="form-control"></select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-3 control-label">成立时间</label>
+                            <label for="EstablishTime" class="col-sm-3 control-label">成立时间</label>
                             <div class="col-sm-7">
-                                <select class="form-control">
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-  <option>5</option>
-</select>
+                                <select id="EstablishTime" class="form-control"></select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-3 control-label">联系方式 </label>
+                            <label for="Tel" class="col-sm-3 control-label">联系方式 </label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputPassword3" placeholder="">
+                                <input id="Tel" type="text" class="form-control" placeholder="">
                             </div>
                         </div>
                     </form>
@@ -153,126 +128,78 @@
                 <div class="content">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-3 control-label">项目名称 </label>
+                            <label for="ProjectName" class="col-sm-3 control-label">项目名称 </label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputPassword3" placeholder="">
+                                <input id="ProjectName" type="text" class="form-control" placeholder="">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-3 control-label">帐期 </label>
+                            <label for="AccountTime" class="col-sm-3 control-label">帐期 </label>
                             <div class="col-sm-3">
-                                <select class="form-control">
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-  <option>5</option>
-</select>
+                                <select id="AccountTime" class="form-control"></select>
                             </div>
-                             <div class="col-sm-4">
-                                <select class="form-control">
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-  <option>5</option>
-</select>
+                            <div class="col-sm-4">
+                                <select id="PayType" class="form-control"></select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-3 control-label">交付方式 </label>
+                            <label for="DeliverType" class="col-sm-3 control-label">交付方式 </label>
                             <div class="col-sm-7">
-                                <select class="form-control">
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-  <option>5</option>
-</select>
+                                <select id="DeliverType" class="form-control"></select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-3 control-label">FOT时间 </label>
+                            <label for="FPTTIme" class="col-sm-3 control-label">FOT时间 </label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputPassword3" placeholder="">
+                                <input id="FPTTIme" type="text" class="form-control" placeholder="">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-3 control-label">PPAP时间 </label>
+                            <label for="PPAPTime" class="col-sm-3 control-label">PPAP时间 </label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputPassword3" placeholder="">
+                                <input id="PPAPTime" type="text" class="form-control" placeholder="">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-3 control-label">项目周期 </label>
+                            <label for="ProjectCycle" class="col-sm-3 control-label">项目周期 </label>
                             <div class="col-sm-7">
-                                <select class="form-control">
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-  <option>5</option>
-</select>
+                                <select id="ProjectCycle" class="form-control"></select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-3 control-label">所需资源 </label>
+                            <label for="RequireResource" class="col-sm-3 control-label">所需资源 </label>
                             <div class="col-sm-7">
-                                <select class="form-control">
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-  <option>5</option>
-</select>
+                                <select id="RequireResource" class="form-control"></select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-3 control-label">利润率 </label>
+                            <label for="ProfitMargin" class="col-sm-3 control-label">利润率 </label>
                             <div class="col-sm-7">
-                                <select class="form-control">
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-  <option>5</option>
-</select>
+                                <select id="ProfitMargin" class="form-control"></select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-3 control-label">制造难度 </label>
+                            <label for="DifficultyGrade" class="col-sm-3 control-label">制造难度 </label>
                             <div class="col-sm-7">
-                                <select class="form-control">
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-  <option>5</option>
-</select>
+                                <select id="DifficultyGrade" class="form-control"></select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-3 control-label">回复期限 </label>
+                            <label for="ReplyTerm" class="col-sm-3 control-label">回复期限 </label>
                             <div class="col-sm-7">
-                                <select class="form-control">
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-  <option>5</option>
-</select>
+                                <select id="ReplyTerm" class="form-control"></select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-3 control-label">项目描述 </label>
+                            <label for="ProjectDes" class="col-sm-3 control-label">项目描述 </label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputPassword3" placeholder="">
+                                <input id="ProjectDes" type="text" class="form-control" placeholder="">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <button type="button" class="btn btn-warning btn-lg">Reject</button>
-                          <button type="button" class="btn btn-success btn-lg">Approve</button>
+                            <button type="button" class="btn btn-success btn-lg">Approve</button>
                         </div>
                     </form>
 
@@ -288,12 +215,104 @@
                     <span class="glyphicon glyphicon-chevron-up"></span>
                 </div>
                 <div class="content">
-                    <span>here is content about u</span>
+
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="ProDeptAssessment" class="col-sm-3 control-label">项目部评估 </label>
+                                    <div class="col-sm-7">
+                                        <select id="ProDeptAssessment" class="form-control"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ProDeptDes" class="col-sm-3 control-label">备注 </label>
+                                    <div class="col-sm-7">
+                                        <input id="ProDeptDes" type="text" class="form-control" placeholder="">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="TecDeptAssessment" class="col-sm-3 control-label">技术部评估 </label>
+                                    <div class="col-sm-7">
+                                        <select id="TecDeptAssessment" class="form-control"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="TecDeptDes" class="col-sm-3 control-label">备注 </label>
+                                    <div class="col-sm-7">
+                                        <input id="TecDeptDes" type="text" class="form-control" placeholder="">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="ManufactureDiffAssessment" class="col-sm-3 control-label">制造难度评估 </label>
+                                    <div class="col-sm-7">
+                                        <select id="ManufactureDiffAssessment" class="form-control"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="CapacityDiffAssessment" class="col-sm-3 control-label">产能难度评估 </label>
+                                    <div class="col-sm-7">
+                                        <select id="CapacityDiffAssessment" class="form-control"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="MakeDes" class="col-sm-3 control-label">备注 </label>
+                                    <div class="col-sm-7">
+                                        <input id="MakeDes" type="text" class="form-control" placeholder="">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="ProjectAssessment" class="col-sm-3 control-label">项目评估 </label>
+                                    <div class="col-sm-7">
+                                        <select id="ProjectAssessment" class="form-control"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ProjectDes" class="col-sm-3 control-label">备注 </label>
+                                    <div class="col-sm-7">
+                                        <input id="ProjectDes" type="text" class="form-control" placeholder="">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" class="btn btn-warning btn-lg" onclick="submit()">Reject</button>
+                        <button type="button" class="btn btn-success btn-lg">Approve</button>
+                    </div>
+
+
+
 
                 </div>
-            </div>
 
+            </div>
         </div>
+
+    </div>
     </div>
 
 

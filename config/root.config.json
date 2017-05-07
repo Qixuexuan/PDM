@@ -61,6 +61,10 @@
         "CapacityDiffAssessment": {
             "Des": "产能难度评估",
             "Items": ["严重不足", "有压力但可以接受", "充足"]
+        },
+        "ProjectAssessment": {
+            "Des": "项目评估",
+            "Items": ["立项", "不立项"]
         }
     }
 }
