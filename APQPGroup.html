@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Index</title>
+    <link href="favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" href="js/bootstrap/css/bootstrap.min.css">
+
+    <script src="js/jquery/jquery-3.0.0.min.js"></script>
+    <script src="js/bootstrap/js/bootstrap.min.js"></script>
+    <style>
+        body>div {
+            width: 95%;
+            margin: 0 auto;
+        }
+        
+        p {
+            color: gray;
+            text-shadow: 0px 0px 5px lightgray;
+            font-style: italic;
+        }
+        
+        table {
+            width: 100%;
+            border: 1px solid gray;
+        }
+        
+        th {
+            background-color: lightblue;
+            height: 25px;
+            text-align: center;
+        }
+        
+        th,
+        td {
+            border: 1px solid gray;
+        }
+        
+        table tr td:nth-child(1) {
+            width: 20%;
+            text-align: center;
+        }
+        
+        table tr td:nth-child(2) {
+            width: 20%;
+            text-align: center;
+        }
+        
+        table tr td:nth-child(3) {
+            width: 10%;
+            text-align: center;
+        }
+        
+        table tr td:nth-child(4) {
+            text-align: center;
+            padding: 5px;
+        }
+        
+        div p:nth-child(1) {
+            margin-top: 15px;
+        }
+        
+        .member-name {
+            width: 50px;
+            color: black;
+            line-height: 25px
+        }
+        
+        .member-minus {
+            color: red;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            float: right;
+            padding-right: 20px;
+            line-height: 25px
+        }
+        
+        .member-plus {
+            color: green;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer
+        }
+    </style>
+
+    <script>
+        $(document).ready(function() {
+            let A = 'Hello';
+            let B = 'TOM'
+            let _html = `<tr><td>${A}</td><td></td><td><span class="glyphicon glyphicon-plus member-plus" onclick="PlusMember(this)"></span></td><td>${B}</td></tr>`
+
+            $("#APQP-Table").append(_html);
+
+            // this is the second way to append a row to table
+            // appendRow();
+
+            function appendRow() {
+                let newtr = document.createElement("tr");
+
+                let newtd1 = document.createElement("td");
+                let newtd2 = document.createElement("td");
+                let newtd3 = document.createElement("td");
+                let newtd4 = document.createElement("td");
+
+                newtr.appendChild(newtd1);
+                newtr.appendChild(newtd2);
+                newtr.appendChild(newtd3);
+                newtr.appendChild(newtd4);
+
+                document.getElementById('APQP-Table').appendChild(newtr);
+            }
+        });
+
+        //  添加成员 
+        function PlusMember(ele) {
+
+            let newid = "mem-0935";
+            let name = '苏滁圆信';
+
+            let pretd = $(ele).parent().prev();
+
+            //  寻找当前td中是否存在此id的成员
+            let $allsapn = $('span'); //获取所有的span元素
+            let flag = $(pretd).find($allsapn); //根据$allsapn获取pretd元素中的所有span
+
+            //  遍历pretd元素中的所有span  判断是否存在id为newid的span
+            for (let sp of flag) {
+                if (sp.id == newid) {
+                    alert(`已经存在${newid}成员`);
+                    return;
+                }
+            }
+
+            let newmember = `<div><span id="${newid}" class="member-name">${name}</span><span class="glyphicon glyphicon-minus member-minus" onclick="MinusMember(this)"></span>`;
+            pretd.append(newmember);
+
+        }
+
+        //  移除成员
+        function MinusMember(ele) {
+            $(ele).parent().remove();
+        }
+
+        //  获取选择的成员
+        function GetSelectMember() {
+            let obj = {};
+
+            for (let i = 1; i <= 12; i++) {
+                let td = $(`#${i}`); //成员所在的td
+
+                // console.log(td.children());
+
+                let valStr = '';
+                for (let div of td.children()) {
+
+                    let id = div.childNodes[0].id; //成员id
+                    let text = div.childNodes[0].textContent; //成员名
+
+                    valStr += id + ','
+                }
+                valStr = valStr.substring(0, valStr.length - 1)
+                obj[i] = valStr;
+            }
+            console.log(obj);
+
+        }
+    </script>
+
+
+</head>
+
+<body>
+    <div class="content tableBox">
+        <p><span>*</span>Remarks: If there are more than one member from same department, then the first member represent their department and take the responsibility</p>
+        <p onclick="GetSelectMember()">注：以上成员每个部门若有多名成员构成，则排在第一位的人员是此部门对此案的领导和代表人员.</p>
+        <table id="APQP-Table">
+            <tr>
+                <th>Dept 部 门</th>
+                <th>Member 人员</th>
+                <th>添加成员</th>
+                <th>Responsibility 职 责</th>
+            </tr>
+            <tr>
+                <td>Commercial/Customer representatives 商务/顾客代表</td>
+                <td id="1">
+                    <div><span id="M001" class="member-name">Jerry</span><span class="glyphicon glyphicon-minus member-minus" onclick="MinusMember(this)"></span></div>
+                    <div><span id="M002" class="member-name">TOMd.Jerry</span><span class="glyphicon glyphicon-minus member-minus" onclick="MinusMember(this)"></span></div>
+                </td>
+                <td><span class="glyphicon glyphicon-plus member-plus" onclick="PlusMember(this)"></span></td>
+                <td>项目经理/项目组长：制定项目进度计划，项目成本和项目质量目标，并通过组织协调和控制来确保该目标的实现。和顾客工程方面事宜的沟通确认，包括项目进度等。</td>
+            </tr>
+
+            <tr>
+                <td>Project management项目经理</td>
+                <td id="2"></td>
+                <td><span class="glyphicon glyphicon-plus member-plus" onclick="PlusMember(this)"></span></td>
+                <td>项目经理/项目组长：制定项目进度计划，项目成本和项目质量目标，并通过组织协调和控制来确保该目标的实现。和顾客工程方面事宜的沟通确认，包括项目进度等。</td>
+            </tr>
+
+            <tr>
+                <td>Quality Engineer质量工程师</td>
+                <td id="3"></td>
+                <td><span class="glyphicon glyphicon-plus member-plus" onclick="PlusMember(this)"></span></td>
+                <td>参与项目各阶段的评估和确认，根据项目需求评估检测/试验设备的能力，主导图纸评估、特殊特性识别等工作，参与APQP文件制作。完成过程质量控制失效模式分析（FMEA），制定控制计划、检验指导书，测量指导书，完成[初始过程能力研究&测量系统研究计划]，并按照计划落实。供方管理，原材料的检验,质量问题的统计分析和反馈。（测量工装、夹制具的开发）</td>
+            </tr>
+
+            <tr>
+                <td>Production生产</td>
+                <td id="4"></td>
+                <td><span class="glyphicon glyphicon-plus member-plus" onclick="PlusMember(this)"></span></td>
+                <td>参与项目各阶段的评估和确认。根据项目需求评估主导产品实现过程设计、生产设备的能力。参与APQP文件的讨论和制作。完成工艺过程序失效模式分析（FMEA）,制定工作指导书，包装规范等。（主导生产过程工装、夹制具、自动货设备的开发）</td>
+            </tr>
+
+            <tr>
+                <td>工艺工程</td>
+                <td id="5"></td>
+                <td><span class="glyphicon glyphicon-plus member-plus" onclick="PlusMember(this)"></span></td>
+                <td>参与项目各阶段的评估和确认。根据项目需求评估主导产品实现过程设计、生产设备的能力。参与APQP文件的讨论和制作。完成工艺过程序失效模式分析（FMEA）,制定工作指导书，包装规范等。（主导生产过程工装、夹制具、自动货设备的开发）</td>
+            </tr>
+
+            <tr>
+                <td>SCM供应链</td>
+                <td id="6"></td>
+                <td><span class="glyphicon glyphicon-plus member-plus" onclick="PlusMember(this)"></span></td>
+                <td>参与项目各阶段的评估和确认。提供新项目产能需求评估&产能冲突解决方案，组织新供方的开发和确认，材料购买。试生产生产计划的安排等。</td>
+            </tr>
+
+            <tr>
+                <td>Tooling Designer模具设计</td>
+                <td id="7"></td>
+                <td><span class="glyphicon glyphicon-plus member-plus" onclick="PlusMember(this)"></span></td>
+                <td>参与项目各阶段的评估和确认。参与APQP文件的讨论和制作。负责模具设计和模具制造评审，模具进度管理。制定模具维护和保养规范等。模具问题点分析、改善方案制定，（备件评估&备件清单制作）</td>
+            </tr>
+
+            <tr>
+                <td>钳工组长</td>
+                <td id="8"></td>
+                <td><span class="glyphicon glyphicon-plus member-plus" onclick="PlusMember(this)"></span></td>
+                <td>参与项目各阶段的评估和确认。参与APQP文件的讨论和制作。负责模具设计和模具制造评审，模具进度管理。制定模具维护和保养规范等。模具问题点分析、改善方案制定，（备件评估&备件清单制作）</td>
+            </tr>
+
+            <tr>
+                <td>研发</td>
+                <td id="9"></td>
+                <td><span class="glyphicon glyphicon-plus member-plus" onclick="PlusMember(this)"></span></td>
+                <td>参与与研发相关项目的开发工作和评审工作</td>
+            </tr>
+
+            <tr>
+                <td>自动化</td>
+                <td id="10"></td>
+                <td><span class="glyphicon glyphicon-plus member-plus" onclick="PlusMember(this)"></span></td>
+                <td>参与前期项目自动化方案的设计、评估与开发调试</td>
+            </tr>
+
+            <tr>
+                <td>包装工程</td>
+                <td id="11"></td>
+                <td><span class="glyphicon glyphicon-plus member-plus" onclick="PlusMember(this)"></span></td>
+                <td>负责项目产品的包装方案和验证工作</td>
+            </tr>
+
+            <tr>
+                <td>财务</td>
+                <td id="12"></td>
+                <td><span class="glyphicon glyphicon-plus member-plus" onclick="PlusMember(this)"></span></td>
+                <td>参与项目的成本核算和预算控制</td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+
+</html>
