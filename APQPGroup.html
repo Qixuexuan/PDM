@@ -121,27 +121,64 @@
         //  添加成员 
         function PlusMember(ele) {
 
+
+
+            $("#dialog-confirm").show();
             $("#dialog-confirm").dialog({
-                resizable: true,
-                height: 500,
+                resizable: false,
+                height: 350,
                 width: 550,
                 modal: true,
                 title: "选择成员",
-                closeText: "hide",
-                dialogClass: "no-close",
-                buttons: [{
-                    text: "Save",
-                    click: function() {
-                        $(this).dialog("close");
-                    }
-                }, {
-                    text: "Cancel",
-                    click: function() {
-                        $(this).dialog("close");
-                    }
-                }]
+                // buttons: [{
+                //     text: "Save",
+                //     click: function() {
+                //         alert();
+                //     }
+                // }, {
+                //     text: "Cancel",
+                //     click: function() {
+                //         $(this).dialog("close");
+                //     }
+                // }]
             });
-            // return;
+
+            // Setter   设置dialog的buttons
+            $("#dialog-confirm").dialog("option", "buttons", [{
+                text: "Save",
+                click: function() {
+                    alert();
+                }
+            }, {
+                text: "Cancel",
+                click: function() {
+                    $(this).dialog("close");
+                }
+            }]);
+
+            // Getter   获取dialog的buttons
+            let buttons = $("#dialog-confirm").dialog("option", "buttons");
+
+            //  给获取到的按钮绑定事件  this does not work-_-
+            for (let btn of buttons) {
+                console.log(btn);
+                switch (btn.text) {
+                    case "Save":
+                        $(btn).bind('click', function() {
+                            alert('Save Button Clicked');
+                        });
+                        break;
+
+                    case "Cancel":
+                        $(btn).bind('click', function() {
+                            alert('Cancel Button Clicked');
+                        });
+                        break;
+                }
+            }
+
+            console.log(buttons);
+            return;
 
             let newid = "mem-0935";
             let name = '苏滁圆信';
@@ -164,6 +201,7 @@
             pretd.append(newmember);
 
         }
+
 
         //  移除成员
         function MinusMember(ele) {
@@ -199,7 +237,7 @@
 </head>
 
 <body>
-    <div id="dialog-confirm">
+    <div id="dialog-confirm" style="display:none">
         <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>成员树</p>
     </div>
     <div class="content tableBox">
