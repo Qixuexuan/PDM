@@ -1,0 +1,58 @@
+[{
+	"id": 1,
+	"text": "My Documents",
+	"children": [{
+		"id": 11,
+		"text": "商务部",
+		"state": "closed",
+		"children": [{
+			"id": 111,
+			"text": "商务部成员1"
+		},
+		{
+			"id": 112,
+			"text": "商务部成员2"
+		},
+		{
+			"id": 113,
+			"text": "商务部成员3"
+		}]
+	},
+	{
+		"id": 12,
+		"text": "制造部",
+		"children": [{
+			"id": 121,
+			"text": "制造部成员1"
+		},
+		{
+			"id": 122,
+			"text": "制造部成员2",
+			"attributes": {
+				"p1": "Custom Attribute1",
+				"p2": "Custom Attribute2"
+			}
+		},
+		{
+			"id": 123,
+			"text": "制造部成员3"
+		},
+		{
+			"id": 124,
+			"text": "制造部成员4",
+			"checked": true
+		}]
+	},
+	{
+		"id": 13,
+		"text": "制造部"
+	},
+	{
+		"id": 14,
+		"text": "技术部"
+	},
+	{
+		"id": 15,
+		"text": "项目部"
+	}]
+}]

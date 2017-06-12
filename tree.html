@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>easyui tree demo</title>
+    <link href="favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" href="easyUI/themes/icon.css">
+    <link rel="stylesheet" href="easyUI/themes/bootstrap/easyui.css">
+
+    <script src="js/jquery/jquery-3.0.0.min.js"></script>
+    <script src="easyUI/jquery.easyui.min.js"></script>
+   <script type="text/javascript">
+		function getChecked(){
+			var nodes = $('#tt').tree('getChecked');
+			var s = '';
+			for(var i=0; i<nodes.length; i++){
+				if (s != '') s += ',';
+				s += nodes[i].id;
+			}
+			alert(s);
+		}
+	</script>
+
+
+</head>
+
+<body>
+    <h2>CheckBox Tree</h2>
+	<p>Tree nodes with check boxes.</p>
+
+	<div style="margin:20px 0;">
+		<a href="#" class="easyui-linkbutton" onclick="getChecked()">GetChecked</a> 
+	</div>
+	<div style="margin:10px 0">
+		<input type="checkbox" checked onchange="$('#tt').tree({cascadeCheck:$(this).is(':checked')})">CascadeCheck 
+		<input type="checkbox" onchange="$('#tt').tree({onlyLeafCheck:$(this).is(':checked')})">OnlyLeafCheck
+	</div>
+   <div class="easyui-panel" style="padding:5px">
+		<ul id="tt" class="easyui-tree" data-options="url:'http://192.168.1.101:8080/tree_data1.json',method:'get',animate:true,checkbox:true"></ul>
+	</div>
+
+</body>
+
+</html>
