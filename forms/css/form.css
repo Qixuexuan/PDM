@@ -39,6 +39,10 @@ table {
     table-layout: fixed;
 }
 
+.table-margin-top {
+    margin-top: 20px;
+}
+
 td {
     height: 30px;
     border: 1px solid gray;
@@ -59,13 +63,32 @@ textarea {
     width: 100%;
 }
 
+input[type="text"] {
+    width: 100%;
+    border: none;
+    text-align: center;
+}
+
+input[type="text"]:focus {
+    width: 100%;
+    /*outline:1px solid red;*/
+    outline: none;
+}
+
 input {
     width: 100%;
     border: none;
+    text-align: center;
 }
 
 input:focus {
     width: 100%;
     /*outline:1px solid red;*/
-    outline:none;
+    outline: none;
+}
+
+.flex-space-around {
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-around;
 }
