@@ -4,6 +4,11 @@
     /*border: 1px solid lightblue*/
 }
 
+.box-width-more {
+    width: 98%;
+    margin: 0 auto;
+}
+
 .logo {
     display: -webkit-flex;
     display: flex;

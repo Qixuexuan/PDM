@@ -10,6 +10,7 @@
     <!--<link href="js/bootstrap/css/bootstrap.min.css" rel="stylesheet" />-->
     <link href="js/handsontable/handsontable.full.css" rel="stylesheet" />
 
+    <script src="Data/QR-PM-05C.js"></script>
     <script src="js/jquery/jquery-2.2.3.min.js"></script>
     <script src="js/handsontable/handsontable.full.js"></script>
 
@@ -18,25 +19,9 @@
         let hot
         $(document).ready(function() {
 
-            // var financeData = [
-            //     ["239.65", "24/02/2015", "0.000128", "-0.2379", "47.044"],
-            //     ["238.99", "24/02/2015", "0.0106", "-0.2435", "5.11"],
-            //     ["231.26", "24/02/2015", "0.0066", "-0.2521", "7.571"],
-            //     ["239.12", "24/02/2015", "0.0082", "-0.2454", "16.429"],
-            //     ["255.07", "24/02/2015", "0.0091", "-0.2017", "252"],
-            //     ["238.91", "24/02/2015", "0.0077", "-0.2437", "995"],
-            //     ["211.51", "24/02/2015", "0.0089", "-0.1880", "4.28"],
-            //     ["210.65", "24/02/2015", "0.0078", "-0.1930", "2.521"],
-            //     ["205.06", "24/02/2015", "0.0107", "-0.2251", "96"],
-            //     ["212.41", "24/02/2015", "0.0085", "-0.1949", "456"],
-            //     ["227.94", "24/02/2015", "0.0158", "-0.1363", "49"],
-            //     ["211.28", "24/02/2015", "0.0078", "-0.1765", "19"],
-            //     ["1486.97", "24/02/2015", "0.0112", "-0.2310", "168"],
-            //     ["1310.00", "24/02/2015", "-0.01812", "-0.3310", "0"],
-            //     ["1497.50", "24/02/2015", "0.0051", "-0.2309", "160"]
-            // ];
 
-            let financeData = [
+
+            let financeData1 = [
                 ["大概", null, "s阿道夫", null, null, "时间", null, null],
                 [null, null, null, null, null, null, null, null],
                 ["大概", "花好月圆", null, null, null, null, null, null],
@@ -66,23 +51,41 @@
                 Handsontable.renderers.TextRenderer.apply(this, arguments);
                 // console.log(prop);
 
-                td.style.textAlign = 'center';
-                td.style.verticalAlign = 'middle';
-                if (value != null) {
-                    // td.cellProperties.readyOnly = true;
+                // console.log(row + '_' + col);
+                // console.log(td);
+                // console.log(cellProperties);
+
+                if (row == 0 && col == 0) {
+                    td.style.textAlign = 'center';
+                    td.style.verticalAlign = 'middle';
+                    // td.style.color = 'red';
+                    td.style.fontSize = '13px';
+                    return td;
                 }
 
-                if (value == "说明") {
+                td.style.textAlign = 'center';
+                td.style.verticalAlign = 'middle';
+                td.style.fontSize = '13px';
+
+
+                if (value == '产品名称') {
+                    td.style.textAlign = 'center';
+
+                    cellProperties.readyOnly = true;
+                    //  return cellProperties;
+                }
+
+                if (prop == '0') {
                     td.style.textAlign = 'left';
-                    td.style.color = 'red';
-                    td.style.fontWeight = 'bold';
+                    // td.style.color = 'red';
+                    // td.style.fontWeight = 'bold';
                 }
 
                 // console.log(td);
 
 
                 if (prop == '2') { //修改字体颜色
-                    td.style.color = '#32CD32';
+                    // td.style.color = '#32CD32';
                 } else if (prop == 'price') {
                     //格式化价格数据
                     td.innerText = value != null ? numbro(value).format('0.00') : "";
@@ -114,13 +117,14 @@
 
             hot = $container.handsontable({
                 data: financeData,
-                colHeaders: ['Here', 'B', 'C', 'D', 'E', '时间', 'G', 'H'],
-                rowHeaders: false, //是否显示行头部
-                colHeaders: false, //是否显示列头部
+                // data: Handsontable.helper.createSpreadsheetData(44, 8),
+                // colHeaders: ['Here', 'B', 'C', 'D', 'E', '时间', 'G', 'H'],
+                rowHeaders: true, //是否显示行头部
+                colHeaders: true, //是否显示列头部
                 contextMenu: true,
                 manualColumnResize: true,
                 manualRowResize: true,
-                colWidths: 100,
+                colWidths: 130,
                 autoColumnSize: false, //当值为true且列宽未设置时，自适应列大小
                 rowHeights: 30,
                 startRows: 0,
@@ -128,50 +132,21 @@
                 maxRows: 200,
                 minSpareRows: 0, //最后一行编辑添加数据后表格后自动追加的行数
                 mergeCells: true,
-                observeChanges: true,
-                mergeCells: [{
-                    row: 2,
-                    col: 1,
-                    rowspan: 3,
-                    colspan: 2
-                }],
-                columns: [{
-                    name: "A",
-                    // data: "ff",
-                    type: 'text'
-                }, {
-                    name: "B",
-                    // data: "B",
-                    type: 'text'
-                }, {
-                    name: "C",
-                    // data: "C",
-                    type: 'text'
-                }, {
-                    name: "D",
-                    // data: "D",
-                    type: 'text'
-                }, {
-                    name: "E",
-                    // data: "E",
-                    type: 'text'
-                }, {
-                    name: "F",
-                    // data: "F",
-                    type: 'date',
-                    dateFormat: 'YYYY-MM-DD'
-                }, {
-                    name: "G",
-                    // data: "G",
-                    type: 'text'
-                }, {
-                    name: "H",
-                    // data: "H",
-                    type: 'text'
-                }],
+                // observeChanges: true,
+                mergeCells: mergeCells,
+
                 cells: function(row, col, prop) {
                     var cellProperties = {};
                     cellProperties.renderer = "negativeValueRenderer";
+
+                    if ((row === 0 && col === 0)||prop==0) {
+                        cellProperties.readOnly = true;
+                    }
+
+                    if (row === 0 && col === 7) {
+                        cellProperties.type= 'date';
+                        cellProperties.dateFormat= 'YYYY-MM-DD';
+                    }
                     return cellProperties;
                 },
                 // contextMenu: ['row_above', 'row_below', '---------', 'remove_row', '---------', 'undo', 'redo', '---------', 'make_read_only', '---------', 'alignment'],
