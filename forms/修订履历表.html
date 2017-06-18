@@ -4,10 +4,106 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>QR-PM-05C 判图记录</title>
+    <title>履历修订表</title>
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">
 
+    <link href="js/handsontable/handsontable.full.css" rel="stylesheet" />
+
+    <script src="Data/XDLLB.js"></script>
+    <script src="js/jquery/jquery-2.2.3.min.js"></script>
+    <script src="js/handsontable/handsontable.full.js"></script>
+
+    <script type="text/javascript">
+        let hot
+        $(document).ready(function() {
+
+            var $container = $('#htable');
+
+            //  单元格内容处理
+            function negativeValueRenderer(instance, td, row, col, prop, value, cellProperties) {
+                Handsontable.renderers.TextRenderer.apply(this, arguments);
+
+
+
+                td.style.textAlign = 'center';
+                td.style.verticalAlign = 'middle';
+                td.style.fontSize = '13px';
+
+                if (prop == '0') {
+                    // td.style.textAlign = 'left';
+                    // td.style.color = 'red';
+                    // td.style.fontWeight = 'bold';
+                }
+
+
+
+            }
+            Handsontable.renderers.registerRenderer('negativeValueRenderer', negativeValueRenderer);
+
+            hot = $container.handsontable({
+                data: financeData,
+                // data: Handsontable.helper.createSpreadsheetData(17, 5),
+                rowHeaders: true, //是否显示行头部
+                colHeaders: true, //是否显示列头部
+                contextMenu: true,
+                manualColumnResize: true,
+                manualRowResize: true,
+                colWidths: 208,
+                autoColumnSize: false, //当值为true且列宽未设置时，自适应列大小
+                rowHeights: 30,
+                startRows: 0,
+                minRows: 5,
+                maxRows: 200,
+                minSpareRows: 0, //最后一行编辑添加数据后表格后自动追加的行数
+                mergeCells: true,
+                // observeChanges: true,
+                mergeCells: mergeCells,
+
+                cells: function(row, col, prop) {
+                    var cellProperties = {};
+                    cellProperties.renderer = "negativeValueRenderer";
+
+                    if (row == 1 && col == 4) {
+                        cellProperties.type = 'numeric';
+                    }
+
+                    if (prop == 0) {
+                        cellProperties.readOnly = true;
+                    }
+
+                    // for(let cell of readonlyCells){
+                    //     if (cell.row == row && cell.col == col) {
+                    //         cellProperties.readOnly = true;
+                    //     }
+                    // }
+
+                    // for (let cell of timeCells) {
+                    //     if (cell.row == row && cell.col == col) {
+                    //         cellProperties.type = 'date';
+                    //         cellProperties.dateFormat = 'YYYY-MM-DD';
+                    //     }
+                    // }
+
+
+                    return cellProperties;
+                },
+            });
+
+
+
+        });
+
+
+
+        function getData() {
+            let handsontable = $("#htable").data('handsontable');
+            let data = handsontable.getData();
+            // console.log(handsontable);
+            console.log(JSON.stringify(handsontable.mergeCells));
+            console.log(JSON.stringify(data));
+        }
+    </script>
 
 </head>
 
@@ -19,127 +115,17 @@
             </div>
 
             <div class="tbname">
-                <p>Document/Form Revision Record</p>
-                <p>文件/表单 修订履历表</p>
+                <p>Drawing Identification Report</p>
+                <p>判图记录表</p>
             </div>
 
         </div>
 
-        <table>
-            <tr>
-                <td>文件类别</td>
-                <td><input type="text" value="QR" /></td>
-                <td rowspan="2">产品和过程的特殊特性清单</td>
-                <td>文件编号</td>
-                <td><input type="text" value="QR-PM-06" /></td>
-            </tr>
-            <tr>
-                <td>制定部门</td>
-                <td><input type="text" value="商务部" /></td>
-                <td>页数</td>
-                <td><input type="text" value="1" /></td>
-            </tr>
+        <div style="margin:0 auto">
+            <div id="htable"></div>
+        </div>
 
-        </table>
-        <table class="table-margin-top">
-            <tr>
-                <td colspan="5" class="td-c"><strong>发送部门</strong></td>
-            </tr>
-            <tr>
-                <td colspan="5">
-                    <div class="flex-space-around">
-                        <span><input type="radio" name="1" value="1">运营部</input></span>
-                        <span><input type="radio" name="1" value="2">质量部</input></span>
-                        <span><input type="radio" name="1" value="3">技术研发中心</input></span>
-                        <span><input type="radio" name="1" value="4">商务部</input></span>
-                        <span><input type="radio" name="1" value="5">财务部</input></span>
-                        <span><input type="radio" name="1" value="6">管理部</input></span>
-                        <span><input type="radio" name="1" value="7">人力资源部</input></span>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="5" class="td-c"><strong>文件制/修订履历表</strong></td>
-            </tr>
-            <tr>
-                <td><strong>制/修订人</strong></td>
-                <td><strong>制/修订内容</strong></td>
-                <td><strong>页次</strong></td>
-                <td><strong>版本/版次</strong></td>
-                <td><strong>发行日期</strong></td>
-            </tr>
-            <tr>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="date" /></td>
-            </tr>
-            <tr>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="date" /></td>
-            </tr>
-            <tr>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="date" /></td>
-            </tr>
-            <tr>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="date" /></td>
-            </tr>
-            <tr>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="date" /></td>
-            </tr>
-            <tr>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="date" /></td>
-            </tr>
-            <tr>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="date" /></td>
-            </tr>
-            <tr>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="date" /></td>
-            </tr>
-            <tr>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="date" /></td>
-            </tr>
-            <tr>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="date" /></td>
-            </tr>
-
-        </table>
+        <div style="height:30px"></div>
 
     </div>
 </body>

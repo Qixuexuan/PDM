@@ -69,14 +69,14 @@
 
 
                 if (value == '产品名称') {
-                    td.style.textAlign = 'center';
+                    // td.style.textAlign = 'center';
 
-                    cellProperties.readyOnly = true;
+                    // cellProperties.readyOnly = true;
                     //  return cellProperties;
                 }
 
                 if (prop == '0') {
-                    td.style.textAlign = 'left';
+                    // td.style.textAlign = 'left';
                     // td.style.color = 'red';
                     // td.style.fontWeight = 'bold';
                 }
@@ -116,8 +116,8 @@
             Handsontable.renderers.registerRenderer('negativeValueRenderer', negativeValueRenderer);
 
             hot = $container.handsontable({
-                data: financeData,
-                // data: Handsontable.helper.createSpreadsheetData(44, 8),
+                // data: financeData,
+                data: Handsontable.helper.createSpreadsheetData(17, 5),
                 // colHeaders: ['Here', 'B', 'C', 'D', 'E', '时间', 'G', 'H'],
                 rowHeaders: true, //是否显示行头部
                 colHeaders: true, //是否显示列头部
@@ -128,19 +128,19 @@
                 autoColumnSize: false, //当值为true且列宽未设置时，自适应列大小
                 rowHeights: 30,
                 startRows: 0,
-                minRows: 20,
+                minRows: 5,
                 maxRows: 200,
                 minSpareRows: 0, //最后一行编辑添加数据后表格后自动追加的行数
                 mergeCells: true,
                 // observeChanges: true,
-                mergeCells: mergeCells,
+                // mergeCells: mergeCells,
 
                 cells: function(row, col, prop) {
                     var cellProperties = {};
                     cellProperties.renderer = "negativeValueRenderer";
 
                     if ((row === 0 && col === 0)||prop==0) {
-                        cellProperties.readOnly = true;
+                        // cellProperties.readOnly = true;
                     }
 
                     if (row === 0 && col === 7) {
@@ -163,11 +163,17 @@
             console.log(JSON.stringify(handsontable.mergeCells));
             console.log(JSON.stringify(data));
         }
+
+        function clearData(){
+            let handsontable = $("#example").data('handsontable');
+          handsontable.clear();
+        }
     </script>
 </head>
 
 <body>
     <input type="button" onclick="getData()" value="获取数据"></input>
+    <input type="button" onclick="clearData()" value="清除数据"></input>
     <div style="background-color:lightblue;margin:0 auto">
         <div id="example" style="height: 100%; overflow: hidden; width: 100%;" data-originalstyle="height: 320px; overflow: hidden; width: 100%;"></div>
     </div>
