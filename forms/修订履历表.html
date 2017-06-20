@@ -64,26 +64,25 @@
                     var cellProperties = {};
                     cellProperties.renderer = "negativeValueRenderer";
 
-                    if (row == 1 && col == 4) {
-                        cellProperties.type = 'numeric';
+                    for(let cell of numberCells){
+                        if (cell.row == row && cell.col == col) {
+                            cellProperties.type = 'numeric';
+                        }
                     }
 
-                    if (prop == 0) {
-                        cellProperties.readOnly = true;
+                     for(let cell of readonlyCells){
+                       
+                       if (cell.row == row && cell.col == col) {
+                            cellProperties.readOnly = true;
+                        }
                     }
 
-                    // for(let cell of readonlyCells){
-                    //     if (cell.row == row && cell.col == col) {
-                    //         cellProperties.readOnly = true;
-                    //     }
-                    // }
-
-                    // for (let cell of timeCells) {
-                    //     if (cell.row == row && cell.col == col) {
-                    //         cellProperties.type = 'date';
-                    //         cellProperties.dateFormat = 'YYYY-MM-DD';
-                    //     }
-                    // }
+                    for (let cell of timeCells) {
+                        if (cell.row == row && cell.col == col) {
+                            cellProperties.type = 'date';
+                            cellProperties.dateFormat = 'YYYY-MM-DD';
+                        }
+                    }
 
 
                     return cellProperties;

@@ -10,7 +10,7 @@
     <!--<link href="js/bootstrap/css/bootstrap.min.css" rel="stylesheet" />-->
     <link href="js/handsontable/handsontable.full.css" rel="stylesheet" />
 
-    <script src="Data/QR-PM-05C.js"></script>
+    <script src="Data/excel.js"></script>
     <script src="js/jquery/jquery-2.2.3.min.js"></script>
     <script src="js/handsontable/handsontable.full.js"></script>
 
@@ -18,31 +18,6 @@
     <script type="text/javascript">
         let hot
         $(document).ready(function() {
-
-
-
-            let financeData1 = [
-                ["大概", null, "s阿道夫", null, null, "时间", null, null],
-                [null, null, null, null, null, null, null, null],
-                ["大概", "花好月圆", null, null, null, null, null, null],
-                [null, null, null, null, null, null, null, null],
-                [null, null, null, "阿斯蒂芬", null, null, null, null],
-                [null, null, null, null, null, null, "爱的发斯蒂芬", null],
-                ["说明", null, null, null, null, null, null, null],
-                [null, null, null, null, null, null, null, null],
-                [null, null, null, null, null, null, null, null],
-                [null, null, null, null, null, null, null, null],
-                [null, null, null, null, "是梵蒂冈", null, null, null],
-                [null, null, "adsf", null, null, null, null, null],
-                [null, null, null, null, null, null, null, "手动阀"],
-                [null, null, null, null, null, null, null, null],
-                [null, null, null, null, null, null, null, null],
-                [null, null, null, "df撒司法", null, null, null, null],
-                [null, null, null, null, null, null, null, null],
-                [null, null, null, null, null, null, null, null],
-                [null, null, null, null, null, null, null, null],
-                [null, null, null, null, null, null, null, null]
-            ]
 
             var $container = $('#example');
 
@@ -116,22 +91,23 @@
             Handsontable.renderers.registerRenderer('negativeValueRenderer', negativeValueRenderer);
 
             hot = $container.handsontable({
-                // data: financeData,
-                data: Handsontable.helper.createSpreadsheetData(17, 5),
+                data: financeData,
+                // data: Handsontable.helper.createSpreadsheetData(21, 22),
                 // colHeaders: ['Here', 'B', 'C', 'D', 'E', '时间', 'G', 'H'],
                 rowHeaders: true, //是否显示行头部
                 colHeaders: true, //是否显示列头部
                 contextMenu: true,
                 manualColumnResize: true,
                 manualRowResize: true,
-                colWidths: 130,
-                autoColumnSize: false, //当值为true且列宽未设置时，自适应列大小
-                rowHeights: 30,
+                // colWidths: 130,
+                autoColumnSize: true, //当值为true且列宽未设置时，自适应列大小
+                // rowHeights: 30,
                 startRows: 0,
                 minRows: 5,
                 maxRows: 200,
                 minSpareRows: 0, //最后一行编辑添加数据后表格后自动追加的行数
                 mergeCells: true,
+                mergeCells: mergeCells,
                 // observeChanges: true,
                 // mergeCells: mergeCells,
 
