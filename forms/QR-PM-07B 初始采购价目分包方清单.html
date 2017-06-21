@@ -4,13 +4,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>履历修订表</title>
+    <title>QR-PM-07B 初始采购价目分包方清单</title>
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">
 
     <link href="js/handsontable/handsontable.full.css" rel="stylesheet" />
 
-    <script src="Data/XDLLB.js"></script>
+    <script src="Data/QR-PM-07B.js"></script>
     <script src="js/jquery/jquery-2.2.3.min.js"></script>
     <script src="js/handsontable/handsontable.full.js"></script>
 
@@ -23,9 +23,6 @@
             //  单元格内容处理
             function negativeValueRenderer(instance, td, row, col, prop, value, cellProperties) {
                 Handsontable.renderers.TextRenderer.apply(this, arguments);
-
-
-
                 td.style.textAlign = 'center';
                 td.style.verticalAlign = 'middle';
                 td.style.fontSize = '13px';
@@ -34,53 +31,53 @@
 
             hot = $container.handsontable({
                 data: financeData,
-                // data: Handsontable.helper.createSpreadsheetData(17, 5),
-                rowHeaders: true, //是否显示行头部
-                colHeaders: true, //是否显示列头部
-                contextMenu: true,
+                rowHeaders: true, 
+                colHeaders: true, 
+                contextMenu: false,
                 manualColumnResize: true,
                 manualRowResize: true,
-                // colWidths: 208,
                 stretchH: 'all',
-                autoColumnSize: false, //当值为true且列宽未设置时，自适应列大小
+                autoColumnSize: false,
                 rowHeights: 30,
                 startRows: 0,
-                minRows: 5,
-                maxRows: 200,
-                minSpareRows: 0, //最后一行编辑添加数据后表格后自动追加的行数
-                mergeCells: true,
-                // observeChanges: true,
+                minRows: 20,
+                maxRows: 100,
+                minSpareRows: 0, 
                 mergeCells: mergeCells,
-
                 cells: function(row, col, prop) {
                     var cellProperties = {};
                     cellProperties.renderer = "negativeValueRenderer";
-
-                    for(let cell of numberCells){
-                        if (cell.row == row && cell.col == col) {
-                            cellProperties.type = 'numeric';
-                        }
+                    if (prop == 6) {
+                         cellProperties.type = 'numeric';
+                         cellProperties.dateFormat = '￥0,0.00';
                     }
-
-                     for(let cell of readonlyCells){
-                       if (cell.row == row && cell.col == col) {
-                            cellProperties.readOnly = true;
-                        }
+                    if(row==0){
+                        cellProperties.readOnly = true;
                     }
-
                     for (let cell of timeCells) {
                         if (cell.row == row && cell.col == col) {
                             cellProperties.type = 'date';
                             cellProperties.dateFormat = 'YYYY-MM-DD';
                         }
                     }
+
+                     for(let cell of readonlyCells){
+
+                       if (cell.row == row && cell.col == col) {
+                            cellProperties.readOnly = true;
+                        }
+                    }
                     return cellProperties;
                 },
             });
         });
+
+
+
         function getData() {
             let handsontable = $("#htable").data('handsontable');
             let data = handsontable.getData();
+            // console.log(handsontable);
             console.log(JSON.stringify(handsontable.mergeCells));
             console.log(JSON.stringify(data));
         }
@@ -96,8 +93,8 @@
             </div>
 
             <div class="tbname">
-                <p>Drawing Identification Report</p>
-                <p>判图记录表</p>
+                <p>Initial Purchase Price List Of Subcontractors</p>
+                <p>初始采购价目分包方清单</p>
             </div>
 
         </div>

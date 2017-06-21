@@ -33,36 +33,37 @@
 
             hot = $container.handsontable({
                 data: financeData,
-                rowHeaders: true, //是否显示行头部
-                colHeaders: true, //是否显示列头部
+                rowHeaders: true, 
+                colHeaders: true, 
                 contextMenu: true,
                 stretchH: 'all',
                 manualColumnResize: true,
                 manualRowResize: true,
-                // colWidths: 208,
-                autoColumnSize: true, //当值为true且列宽未设置时，自适应列大小
+                autoColumnSize: true, 
                 rowHeights: 30,
                 startRows: 0,
                 minRows: 5,
                 maxRows: 200,
-                minSpareRows: 0, //最后一行编辑添加数据后表格后自动追加的行数
+                minSpareRows: 0, 
                 mergeCells: true,
-                // observeChanges: true,
                 mergeCells: mergeCells,
                 colWidths: [100, 100, 120, 100, 70, 70, 70, 70, 70, 70],
                 cells: function(row, col, prop) {
                     var cellProperties = {};
                     cellProperties.renderer = "negativeValueRenderer";
 
-                    if (col == 5 && row == 5) {
-                        cellProperties.type = 'dropdown';
-                        cellProperties.source = ['yellow', 'red', 'orange', 'green', 'blue', 'gray', 'black', 'white'];
-                    }
+                    // if (col == 5 && row == 5) {
+                    //     cellProperties.type = 'dropdown';
+                    //     cellProperties.source = ['yellow', 'red', 'orange', 'green', 'blue', 'gray', 'black', 'white'];
+                    // }
 
-                    if (col == 6 && row == 5) {
-                        cellProperties.type = 'checkbox';
-                        cellProperties.checkedTemplate = 'yes',
-                            cellProperties.uncheckedTemplate = 'no'
+                    // if (col == 6 && row == 5) {
+                    //     cellProperties.type = 'checkbox';
+                    //     cellProperties.checkedTemplate = 'yes',
+                    //         cellProperties.uncheckedTemplate = 'no'
+                    // }
+                    if(col==0){
+                        cellProperties.readOnly = true;
                     }
 
                     // for(let cell of numberCells){

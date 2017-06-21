@@ -27,7 +27,6 @@
                 if (row == 0 && col == 0) {
                     td.style.textAlign = 'center';
                     td.style.verticalAlign = 'middle';
-                    // td.style.color = 'red';
                     td.style.fontSize = '13px';
                     return td;
                 }
@@ -38,8 +37,6 @@
 
                 if (prop == '0') {
                     td.style.textAlign = 'left';
-                    // td.style.color = 'red';
-                    // td.style.fontWeight = 'bold';
                 }
 
 
@@ -49,22 +46,20 @@
 
             hot = $container.handsontable({
                 data: financeData,
-                // data: Handsontable.helper.createSpreadsheetData(44, 8),
-                // colHeaders: ['Here', 'B', 'C', 'D', 'E', '时间', 'G', 'H'],
-                rowHeaders: true, //是否显示行头部
-                colHeaders: true, //是否显示列头部
+                rowHeaders: true,
+                colHeaders: true,
                 contextMenu: true,
                 manualColumnResize: true,
                 manualRowResize: true,
-                colWidths: 130,
-                autoColumnSize: false, //当值为true且列宽未设置时，自适应列大小
+                // colWidths: 130,
+                stretchH: 'all',
+                autoColumnSize: false,
                 rowHeights: 30,
                 startRows: 0,
                 minRows: 20,
                 maxRows: 200,
-                minSpareRows: 0, //最后一行编辑添加数据后表格后自动追加的行数
+                minSpareRows: 0, 
                 mergeCells: true,
-                // observeChanges: true,
                 mergeCells: mergeCells,
 
                 cells: function(row, col, prop) {
@@ -87,22 +82,14 @@
                             cellProperties.dateFormat = 'YYYY-MM-DD';
                         }
                     }
-
-
                     return cellProperties;
                 },
             });
-
-
-
         });
-
-
-
+        
         function getData() {
             let handsontable = $("#htable").data('handsontable');
             let data = handsontable.getData();
-            // console.log(handsontable);
             console.log(JSON.stringify(handsontable.mergeCells));
             console.log(JSON.stringify(data));
         }
