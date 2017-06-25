@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>QR-PM-09C 需求设备工装实验设备清单</title>
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">
+
+    <link href="js/handsontable/handsontable.full.css" rel="stylesheet" />
+
+    <script src="Data/QR-PM-09C.js"></script>
+    <script src="js/jquery/jquery-2.2.3.min.js"></script>
+    <script src="js/handsontable/handsontable.full.js"></script>
+
+    <script type="text/javascript">
+        let hot
+        $(document).ready(function() {
+
+            var $container = $('#htable');
+
+            //  单元格内容处理
+            function negativeValueRenderer(instance, td, row, col, prop, value, cellProperties) {
+                Handsontable.renderers.TextRenderer.apply(this, arguments);
+                td.style.textAlign = 'center';
+                td.style.verticalAlign = 'middle';
+                td.style.fontSize = '13px';
+                // td.style.border='none';
+            }
+            Handsontable.renderers.registerRenderer('negativeValueRenderer', negativeValueRenderer);
+
+            hot = $container.handsontable({
+                data: financeData,
+                rowHeaders: true,
+                colHeaders: true,
+                contextMenu: false,
+                manualColumnResize: true,
+                manualRowResize: true,
+                stretchH: 'all',
+                autoColumnSize: false,
+                rowHeights: 30,
+                startRows: 0,
+                minRows: 10,
+                maxRows: 100,
+                minSpareRows: 0,
+                mergeCells: mergeCells,
+                cells: function(row, col, prop) {
+                    var cellProperties = {};
+                    cellProperties.renderer = "negativeValueRenderer";
+                    
+                    if (row == 2||row==3||(row==25&&col!=7)||(row==26&&col!=2&&col!=5&&col!=7)){
+                        cellProperties.readOnly = true;
+                    }
+
+                    if(col===6||col===7&&(row!=0&&row!=1&&row!=2&&row!=25&&row!=26)||(col===7&&row===25)){
+                        cellProperties.type = 'numeric';
+                    }
+
+                    for (let cell of timeCells) {
+                        if (cell.row == row && cell.col == col) {
+                            cellProperties.type = 'date';
+                            cellProperties.dateFormat = 'YYYY-MM-DD';
+                        }
+                    }
+
+                    for (let cell of readonlyCells) {
+
+                        if (cell.row == row && cell.col == col) {
+                            cellProperties.readOnly = true;
+                        }
+                    }
+                    return cellProperties;
+                },
+            });
+        });
+
+
+
+        function getData() {
+            let handsontable = $("#htable").data('handsontable');
+            let data = handsontable.getData();
+            // console.log(handsontable);
+            console.log(JSON.stringify(handsontable.mergeCells));
+            console.log(JSON.stringify(data));
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="box">
+        <div class="title">
+            <div class="logo">
+                <img src="img/titlelogo.png">
+            </div>
+
+            <div class="tbname">
+                <p>Required Equipment,Tooling,and Testing Equipment List</p>
+                <p>需求设备、工装、量具和试验装备清单</p>
+            </div>
+
+        </div>
+
+        <div style="margin:0 auto">
+            <div id="htable"></div>
+        </div>
+
+        <div style="height:30px"></div>
+
+    </div>
+</body>
+
+</html>
