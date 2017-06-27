@@ -4,13 +4,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>QR-PM-22C 初始过程能力研究和测量系统研究计划</title>
+    <title>QR-PM-09C 需求设备工装实验设备清单</title>
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">
 
     <link href="js/handsontable/handsontable.full.css" rel="stylesheet" />
 
-    <script src="Data/QR-PM-22C.js"></script>
+    <script src="Data/QR-PM-27E.js"></script>
     <script src="js/jquery/jquery-2.2.3.min.js"></script>
     <script src="js/handsontable/handsontable.full.js"></script>
 
@@ -27,13 +27,17 @@
                 td.style.verticalAlign = 'middle';
                 td.style.fontSize = '13px';
 
-                if (row === 0) {
-                    td.style.border = 'none';
-                }
-                if (row === 1 || row === 12) {
-                    td.style.textAlign = 'left';
-                    td.style.fontWeight = 'bold';
-                }
+                 if (col == 1 && (row != 0 && row != 1 && row != 2 && row != 43 && row != 44 && row != 45)) {
+                        td.style.textAlign = 'left';
+                    }
+
+                // if (row === 0) {
+                //     td.style.border = 'none';
+                // }
+                // if (row === 1 || row === 12) {
+                //     td.style.textAlign = 'left';
+                //     td.style.fontWeight = 'bold';
+                // }
 
             }
             Handsontable.renderers.registerRenderer('negativeValueRenderer', negativeValueRenderer);
@@ -57,14 +61,15 @@
                     var cellProperties = {};
                     cellProperties.renderer = "negativeValueRenderer";
 
-                    if (row == 1 || row == 2 || row == 12 || row == 13 || row == 14) {
+                   
+                     if (col == 1 && (row != 0 && row != 1 && row != 2 && row != 43 && row != 44 && row != 45)||(col==0&&row!=1)||row==0||row==2) {
                         cellProperties.readOnly = true;
                     }
 
-                    if ((col == 5 && (row > 2 && row < 12)) || (col == 8 && (row > 2 && row < 12))) {
-                        cellProperties.type = 'date';
-                        cellProperties.dateFormat = 'YYYY-MM-DD';
-                    }
+                    // if ((col == 5 && (row > 2 && row < 12)) || (col == 8 && (row > 2 && row < 12))) {
+                    //     cellProperties.type = 'date';
+                    //     cellProperties.dateFormat = 'YYYY-MM-DD';
+                    // }
 
                     for (let cell of timeCells) {
                         if (cell.row == row && cell.col == col) {
@@ -103,8 +108,8 @@
             </div>
 
             <div class="tbname">
-                <p>Preliminary Process Capability Study & Measurement System Analysis Plan</p>
-                <p>初始过程能力研究 & 测量系统研究计划 </p>
+                <p>Production Trial Run Checklist</p>
+                <p>试作点检表</p>
             </div>
 
         </div>
