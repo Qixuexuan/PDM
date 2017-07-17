@@ -92,7 +92,7 @@
 
             hot = $container.handsontable({
                 data: financeData,
-                // data: Handsontable.helper.createSpreadsheetData(46, 7),
+                // data: Handsontable.helper.createSpreadsheetData(39, 8),
                 // colHeaders: ['Here', 'B', 'C', 'D', 'E', '时间', 'G', 'H'],
                 rowHeaders: true, //是否显示行头部
                 colHeaders: true, //是否显示列头部
@@ -121,10 +121,14 @@
                     //     // cellProperties.readOnly = true;
                     // }
 
-                    // if (row === 0 && col === 7) {
-                    //     cellProperties.type= 'date';
-                    //     cellProperties.dateFormat= 'YYYY-MM-DD';
-                    // }
+                    if (row === 0 && col === 7) {
+                        cellProperties.type= 'date';
+                        cellProperties.dateFormat= 'YYYY-MM-DD';
+
+                        // cellProperties.type = 'checkbox';
+                        // cellProperties.checkedTemplate = 'yes';
+                        // cellProperties.uncheckedTemplate = 'no'
+                    }
                     return cellProperties;
                 },
                 // contextMenu: ['row_above', 'row_below', '---------', 'remove_row', '---------', 'undo', 'redo', '---------', 'make_read_only', '---------', 'alignment'],
@@ -142,9 +146,9 @@
             console.log(JSON.stringify(data));
         }
 
-        function clearData(){
+        function clearData() {
             let handsontable = $("#example").data('handsontable');
-          handsontable.clear();
+            handsontable.clear();
         }
     </script>
 </head>

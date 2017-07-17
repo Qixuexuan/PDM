@@ -4,13 +4,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>QR-PM-05C 判图记录</title>
+    <title>QR-PM-30A 包装评估验证检查表</title>
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">
 
     <link href="js/handsontable/handsontable.full.css" rel="stylesheet" />
 
-    <script src="Data/QR-PM-05C.js"></script>
+    <script src="Data/QR-PM-30A.js"></script>
     <script src="js/jquery/jquery-2.2.3.min.js"></script>
     <script src="js/handsontable/handsontable.full.js"></script>
 
@@ -23,24 +23,13 @@
             //  单元格内容处理
             function negativeValueRenderer(instance, td, row, col, prop, value, cellProperties) {
                 Handsontable.renderers.TextRenderer.apply(this, arguments);
-
-                if (row == 0 && col == 0) {
-                    td.style.textAlign = 'center';
-                    td.style.verticalAlign = 'middle';
-                    td.style.fontSize = '13px';
-                    return td;
-                }
-
                 td.style.textAlign = 'center';
                 td.style.verticalAlign = 'middle';
                 td.style.fontSize = '13px';
 
-                if (prop == '0') {
-                    td.style.textAlign = 'left';
-                }
-
-
-
+                //  if (col == 1 && (row != 0 && row != 1 && row != 2 && row != 43 && row != 44 && row != 45)) {
+                //         td.style.textAlign = 'left';
+                //     }
             }
             Handsontable.renderers.registerRenderer('negativeValueRenderer', negativeValueRenderer);
 
@@ -48,47 +37,44 @@
                 data: financeData,
                 rowHeaders: true,
                 colHeaders: true,
-                contextMenu: true,
+                contextMenu: false,
                 manualColumnResize: true,
                 manualRowResize: true,
-                // colWidths: 130,
                 stretchH: 'all',
                 autoColumnSize: false,
                 rowHeights: 30,
                 startRows: 0,
-                minRows: 20,
-                maxRows: 200,
+                minRows: 10,
+                maxRows: 100,
                 minSpareRows: 0,
-                mergeCells: true,
                 mergeCells: mergeCells,
-
                 cells: function(row, col, prop) {
                     var cellProperties = {};
                     cellProperties.renderer = "negativeValueRenderer";
 
-                    if (prop == 0) {
-                        cellProperties.readOnly = true;
-                    }
+                   
+                    //  if (col == 1 && (row != 0 && row != 1 && row != 2 && row != 43 && row != 44 && row != 45)||(col==0&&row!=1)||row==0||row==2) {
+                    //     cellProperties.readOnly = true;
+                    // }
 
-                    for (let cell of readonlyCells) {
-                        if (cell.row == row && cell.col == col) {
-                            cellProperties.readOnly = true;
-                        }
-                    }
+                    // if ((col == 5 && (row > 2 && row < 12)) || (col == 8 && (row > 2 && row < 12))) {
+                    //     cellProperties.type = 'date';
+                    //     cellProperties.dateFormat = 'YYYY-MM-DD';
+                    // }
 
-                    for (let cell of timeCells) {
-                        if (cell.row == row && cell.col == col) {
-                            cellProperties.type = 'date';
-                            cellProperties.dateFormat = 'YYYY-MM-DD';
+                    // for (let cell of timeCells) {
+                    //     if (cell.row == row && cell.col == col) {
+                    //         cellProperties.type = 'date';
+                    //         cellProperties.dateFormat = 'YYYY-MM-DD';
+                    //     }
+                    // }
 
-                            cellProperties.type = 'checkbox';
-                            cellProperties.checkedTemplate = 'yes';
-                            cellProperties.uncheckedTemplate = 'no'
+                    // for (let cell of readonlyCells) {
 
-                            // cellProperties.type = 'dropdown';
-                            // cellProperties.source = ['yellow', 'red', 'orange', 'green', 'blue', 'gray', 'black', 'white']
-                        }
-                    }
+                    //     if (cell.row == row && cell.col == col) {
+                    //         cellProperties.readOnly = true;
+                    //     }
+                    // }
                     return cellProperties;
                 },
             });
@@ -97,6 +83,7 @@
         function getData() {
             let handsontable = $("#htable").data('handsontable');
             let data = handsontable.getData();
+            // console.log(handsontable);
             console.log(JSON.stringify(handsontable.mergeCells));
             console.log(JSON.stringify(data));
         }
@@ -112,8 +99,8 @@
             </div>
 
             <div class="tbname">
-                <p>Drawing Identification Report</p>
-                <p>判图记录表</p>
+                <p>Packing Evaluation and Verification Check List</p>
+                <p>包装评估验证检查表</p>
             </div>
 
         </div>
