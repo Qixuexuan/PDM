@@ -27,9 +27,27 @@
                 td.style.verticalAlign = 'middle';
                 td.style.fontSize = '13px';
 
-                //  if (col == 1 && (row != 0 && row != 1 && row != 2 && row != 43 && row != 44 && row != 45)) {
-                //         td.style.textAlign = 'left';
-                //     }
+                if (value == "√" || value == "×") {
+                    td.style.fontSize = '18px';
+                    cellProperties.type = 'dropdown';
+                    cellProperties.source = ['√', '×'];
+
+                    if (value == "√") {
+                        td.style.color = 'green';
+                        td.style.fontWeight = 'bold';
+                    }
+                }
+
+                // if (col == 5 && row == 5) {
+                //     cellProperties.type = 'dropdown';
+                //     cellProperties.source = ['yellow', 'red', 'orange', 'green', 'blue', 'gray', 'black', 'white'];
+                // }
+
+                if (row == 4 || row == 24 || row == 31 || row == 32) {
+                    td.style.textAlign = 'left';
+                    td.style.fontWeight = 'bold';
+                    td.style.fontSize = '15px';
+                }
             }
             Handsontable.renderers.registerRenderer('negativeValueRenderer', negativeValueRenderer);
 
@@ -52,7 +70,6 @@
                     var cellProperties = {};
                     cellProperties.renderer = "negativeValueRenderer";
 
-                   
                     //  if (col == 1 && (row != 0 && row != 1 && row != 2 && row != 43 && row != 44 && row != 45)||(col==0&&row!=1)||row==0||row==2) {
                     //     cellProperties.readOnly = true;
                     // }
@@ -62,12 +79,12 @@
                     //     cellProperties.dateFormat = 'YYYY-MM-DD';
                     // }
 
-                    // for (let cell of timeCells) {
-                    //     if (cell.row == row && cell.col == col) {
-                    //         cellProperties.type = 'date';
-                    //         cellProperties.dateFormat = 'YYYY-MM-DD';
-                    //     }
-                    // }
+                    for (let cell of timeCells) {
+                        if (cell.row == row && cell.col == col) {
+                            cellProperties.type = 'date';
+                            cellProperties.dateFormat = 'YYYY-MM-DD';
+                        }
+                    }
 
                     // for (let cell of readonlyCells) {
 

@@ -30,6 +30,17 @@
                 // console.log(td);
                 // console.log(cellProperties);
 
+                 if (value == "√" || value == "×") {
+                    td.style.fontSize = '18px';
+                    cellProperties.type = 'dropdown';
+                    cellProperties.source = ['√', '×'];
+
+                    if (value == "√") {
+                        td.style.color = 'green';
+                        td.style.fontWeight = 'bold';
+                    }
+                }
+
                 if (row == 0 && col == 0) {
                     td.style.textAlign = 'center';
                     td.style.verticalAlign = 'middle';
@@ -122,8 +133,8 @@
                     // }
 
                     if (row === 0 && col === 7) {
-                        cellProperties.type= 'date';
-                        cellProperties.dateFormat= 'YYYY-MM-DD';
+                        cellProperties.type = 'date';
+                        cellProperties.dateFormat = 'YYYY-MM-DD';
 
                         // cellProperties.type = 'checkbox';
                         // cellProperties.checkedTemplate = 'yes';
@@ -141,7 +152,9 @@
         function getData() {
             let handsontable = $("#example").data('handsontable');
             let data = handsontable.getData();
-            // console.log(handsontable);
+            console.log(handsontable);
+            console.log(handsontable.getSchema());
+            console.log(handsontable.getSettings());
             console.log(JSON.stringify(handsontable.mergeCells));
             console.log(JSON.stringify(data));
         }
