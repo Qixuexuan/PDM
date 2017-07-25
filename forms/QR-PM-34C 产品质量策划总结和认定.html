@@ -4,13 +4,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>QR-PM-33B 量产准备审核表</title>
+    <title>QR-PM-34C 产品质量策划总结和认定</title>
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">
 
     <link href="js/handsontable/handsontable.full.css" rel="stylesheet" />
 
-    <script src="Data/QR-PM-33B.js"></script>
+    <script src="Data/QR-PM-34C.js"></script>
     <script src="js/jquery/jquery-2.2.3.min.js"></script>
     <script src="js/handsontable/handsontable.full.js"></script>
 
@@ -27,28 +27,28 @@
                 td.style.verticalAlign = 'middle';
                 td.style.fontSize = '13px';
 
-                if (value == "10" || value == "8" || value == "4" || value == "0") {
-                    cellProperties.type = 'dropdown';
-                    cellProperties.source = ['10', '8', '4', '0'];
+                // if (value == "10" || value == "8" || value == "4" || value == "0") {
+                //     cellProperties.type = 'dropdown';
+                //     cellProperties.source = ['10', '8', '4', '0'];
 
-                    if (value == "0") {
-                        td.style.color = 'red';
-                        td.style.fontWeight = 'bold';
-                    }
-                }
+                //     if (value == "0") {
+                //         td.style.color = 'red';
+                //         td.style.fontWeight = 'bold';
+                //     }
+                // }
 
-                if (col == 1) {
-                    td.style.textAlign = 'left';
-                }
-                for (let cell of titleCells) {
+                // if (col == 1) {
+                //     td.style.textAlign = 'left';
+                // }
+                // for (let cell of titleCells) {
 
-                    if (cell.row == row && cell.col == col) {
-                        td.style.textAlign = 'left';
-                        td.style.fontWeight = 'bold';
-                        td.style.fontSize = '15px';
-                    }
+                //     if (cell.row == row && cell.col == col) {
+                //         td.style.textAlign = 'left';
+                //         td.style.fontWeight = 'bold';
+                //         td.style.fontSize = '15px';
+                //     }
 
-                }
+                // }
 
 
 
@@ -93,16 +93,16 @@
                     // }
 
 
-                    for (let cell of timeCells) {
-                        if (cell.row == row && cell.col == col) {
-                            cellProperties.type = 'date';
-                            cellProperties.dateFormat = 'YYYY-MM-DD';
-                        }
-                    }
+                    // for (let cell of timeCells) {
+                    //     if (cell.row == row && cell.col == col) {
+                    //         cellProperties.type = 'date';
+                    //         cellProperties.dateFormat = 'YYYY-MM-DD';
+                    //     }
+                    // }
 
-                    if(row>58||(col<6&&row!=0&&row!=1)){
-                        cellProperties.readOnly = true;
-                    }
+                    // if(row>58||(col<6&&row!=0&&row!=1)){
+                    //     cellProperties.readOnly = true;
+                    // }
 
                     // for (let cell of readonlyCells) {
 
@@ -134,19 +134,15 @@
             </div>
 
             <div class="tbname">
-                <p>Launch Readiness Audit</p>
-                <p>量产准备审核表</p>
+                <p>Product Quality Planning Summary and Confirmation</p>
+                <p>产品质量策划总结和认定</p>
             </div>
 
         </div>
 
         <div style="margin:0 auto">
             <div id="htable"></div>
-            <!--<div style="width:30%;background-color:teal;height:100px;float:left">
-                <img src="img/steps.png"/>
-            </div>-->
         </div>
-        <img src="img/steps.png"/>
 
     </div>
 </body>
