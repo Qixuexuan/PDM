@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>制造可行性报告</title>
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">
+
+    <link href="js/handsontable/handsontable.full.css" rel="stylesheet" />
+
+    <script src="Data/制造可行性报告.js"></script>
+    <script src="js/jquery/jquery-2.2.3.min.js"></script>
+    <script src="js/handsontable/handsontable.full.js"></script>
+
+    <script type="text/javascript">
+        let hot
+        $(document).ready(function() {
+
+            var $container = $('#htable');
+
+            //  单元格内容处理
+            function negativeValueRenderer(instance, td, row, col, prop, value, cellProperties) {
+                Handsontable.renderers.TextRenderer.apply(this, arguments);
+                td.style.textAlign = 'center';
+                td.style.verticalAlign = 'middle';
+                td.style.fontSize = '13px';
+
+                if(col==7&&row==1){
+                    td.style.backgroundColor='yellow'
+                }
+
+                for (let cell of titleCells) {
+
+                    if (cell.row == row && cell.col == col) {
+                        td.style.textAlign = 'left';
+                        td.style.fontWeight = 'bold';
+                        td.style.fontSize = '15px';
+                        td.style.backgroundColor='yellow'
+                    }
+
+                }
+
+                 for (let cell of timeCells) {
+                        if (cell.row == row && cell.col == col) {
+                            cellProperties.type = 'date';
+                            cellProperties.dateFormat = 'YYYY-MM-DD';
+                            td.style.backgroundColor='lightblue';
+                            td.style.borderBottom = 'solid 1px gray';
+                        }
+                    }
+
+                 if (value == "√" || value == "×") {
+                    td.style.fontSize = '18px';
+                    cellProperties.type = 'dropdown';
+                    cellProperties.source = ['√', '×'];
+
+                    if (value == "√") {
+                        td.style.color = 'green';
+                        td.style.fontWeight = 'bold';
+                    }
+                }
+
+                if(col==2){
+                    td.style.textAlign = 'left';
+                }
+
+
+
+                for (let cell of marginLeft) {
+                    if (cell.row == row && cell.col == col) {
+                        td.style.textAlign = 'left';
+                    }
+                }
+
+                for (let cell of noBorderBottomCells) {
+                    if (cell.row == row && cell.col == col) {
+                        td.style.borderBottom = 'none';
+                    }
+                }
+            }
+            Handsontable.renderers.registerRenderer('negativeValueRenderer', negativeValueRenderer);
+
+            hot = $container.handsontable({
+                data: financeData,
+                rowHeaders: true,
+                colHeaders: true,
+                contextMenu: false,
+                manualColumnResize: true,
+                manualRowResize: true,
+                stretchH: 'all',
+                autoColumnSize: false,
+                 colWidths: [50, 30],
+                rowHeights: 30,
+                startRows: 0,
+                minRows: 10,
+                maxRows: 100,
+                minSpareRows: 0,
+                mergeCells: mergeCells,
+                cells: function(row, col, prop) {
+                    var cellProperties = {};
+                    cellProperties.renderer = "negativeValueRenderer";
+
+
+
+                    // if ((col == 5 && (row > 2 && row < 12)) || (col == 8 && (row > 2 && row < 12))) {
+                    //     cellProperties.type = 'date';
+                    //     cellProperties.dateFormat = 'YYYY-MM-DD';
+                    // }
+
+                    // for (let cell of numericCells) {
+                    //     if (cell.row == row && cell.col == col) {
+                    //        cellProperties.type = 'numeric';
+                    //     }
+                    // }
+
+
+                    // for (let cell of timeCells) {
+                    //     if (cell.row == row && cell.col == col) {
+                    //         cellProperties.type = 'date';
+                    //         cellProperties.dateFormat = 'YYYY-MM-DD';
+                    //     }
+                    // }
+
+                    if(row==24){
+                        cellProperties.readOnly = true;
+                    }
+
+                    // for (let cell of readonlyCells) {
+
+                    //     if (cell.row == row && cell.col == col) {
+                    //         cellProperties.readOnly = true;
+                    //     }
+                    // }
+                    return cellProperties;
+                },
+            });
+        });
+
+        function getData() {
+            let handsontable = $("#htable").data('handsontable');
+            let data = handsontable.getData();
+            // console.log(handsontable);
+            console.log(JSON.stringify(handsontable.mergeCells));
+            console.log(JSON.stringify(data));
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="box">
+        <div class="title">
+            <div class="logo">
+                <img src="img/titlelogo.png">
+            </div>
+
+            <div class="tbname">
+                <p>Manufacture Feasibility Checklist </p>
+                <p>制造可行性检查表</p>
+            </div>
+
+        </div>
+
+        <div style="margin:0 auto">
+            <div id="htable"></div>
+        </div>
+
+    </div>
+</body>
+
+</html>
