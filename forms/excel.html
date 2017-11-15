@@ -102,8 +102,8 @@
             Handsontable.renderers.registerRenderer('negativeValueRenderer', negativeValueRenderer);
 
             hot = $container.handsontable({
-                data: financeData,
-                // data: Handsontable.helper.createSpreadsheetData(35, 11),
+                // data: financeData,
+                data: Handsontable.helper.createSpreadsheetData(38, 8),
                 // colHeaders: ['Here', 'B', 'C', 'D', 'E', '时间', 'G', 'H'],
                 rowHeaders: true, //是否显示行头部
                 colHeaders: true, //是否显示列头部
@@ -111,8 +111,8 @@
                 manualColumnResize: true,
                 manualRowResize: true,
                 stretchH: 'all',
-                colWidths: [30, 50],
-                // colWidths: 130,
+                // colWidths: [100],
+                colWidths: 100,
                 autoColumnSize: true, //当值为true且列宽未设置时，自适应列大小
                 // rowHeights: 30,
                 startRows: 0,
@@ -120,7 +120,7 @@
                 maxRows: 200,
                 minSpareRows: 0, //最后一行编辑添加数据后表格后自动追加的行数
                 mergeCells: true,
-                mergeCells: mergeCells,
+                // mergeCells: mergeCells,
                 // observeChanges: true,
                 // mergeCells: mergeCells,
 

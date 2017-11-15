@@ -4,13 +4,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>QR-PM-31D 试作总结报告</title>
+    <title>QR-PM-03E 项目范围</title>
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">
 
     <link href="js/handsontable/handsontable.full.css" rel="stylesheet" />
 
-    <script src="Data/QR-PM-31D.js"></script>
+    <script src="Data/QR-PM-03E.js"></script>
     <script src="js/jquery/jquery-2.2.3.min.js"></script>
     <script src="js/handsontable/handsontable.full.js"></script>
 
@@ -26,43 +26,32 @@
                 td.style.textAlign = 'center';
                 td.style.verticalAlign = 'middle';
                 td.style.fontSize = '13px';
+                td.style.border = '1px solid black';
 
-                if (value == "√" || value == "×") {
-                    td.style.fontSize = '18px';
-                    cellProperties.type = 'dropdown';
-                    cellProperties.source = ['√', '×'];
+                for (let cell of titleCells) {
 
-                    if (value == "√") {
-                        td.style.color = 'green';
+                    if (cell.row == row && cell.col == col) {
+                        td.style.textAlign = 'left';
                         td.style.fontWeight = 'bold';
+                        td.style.fontSize = '15px';
+
                     }
+
                 }
 
-                if (value == "是" || value == "否") {
-                    cellProperties.type = 'dropdown';
-                    cellProperties.source = ['是', '否'];
 
-                    if (value == "是") {
-                        td.style.color = 'green';
-                    }
-                }
-
-                // if (col == 5 && row == 5) {
-                //     cellProperties.type = 'dropdown';
-                //     cellProperties.source = ['yellow', 'red', 'orange', 'green', 'blue', 'gray', 'black', 'white'];
-                // }
-
-                // if (row == 4 || row == 24 || row == 31 || row == 32) {
-                //     td.style.textAlign = 'left';
-                //     td.style.fontWeight = 'bold';
-                //     td.style.fontSize = '15px';
-                // }
 
                 for (let cell of marginLeft) {
                     if (cell.row == row && cell.col == col) {
                         td.style.textAlign = 'left';
                     }
                 }
+
+                // for (let cell of noBorderBottomCells) {
+                //     if (cell.row == row && cell.col == col) {
+                //         td.style.borderBottom = 'none';
+                //     }
+                // }
             }
             Handsontable.renderers.registerRenderer('negativeValueRenderer', negativeValueRenderer);
 
@@ -74,8 +63,9 @@
                 manualColumnResize: true,
                 manualRowResize: true,
                 stretchH: 'all',
+                colWidths: 100,
                 autoColumnSize: false,
-                rowHeights: 30,
+                rowHeights: 25,
                 startRows: 0,
                 minRows: 10,
                 maxRows: 100,
@@ -85,34 +75,10 @@
                     var cellProperties = {};
                     cellProperties.renderer = "negativeValueRenderer";
 
-                    //  if (col == 1 && (row != 0 && row != 1 && row != 2 && row != 43 && row != 44 && row != 45)||(col==0&&row!=1)||row==0||row==2) {
-                    //     cellProperties.readOnly = true;
-                    // }
-
-                    // if ((col == 5 && (row > 2 && row < 12)) || (col == 8 && (row > 2 && row < 12))) {
-                    //     cellProperties.type = 'date';
-                    //     cellProperties.dateFormat = 'YYYY-MM-DD';
-                    // }
-
-                    for (let cell of numericCells) {
-                        if (cell.row == row && cell.col == col) {
-                            cellProperties.type = 'numeric';
-                        }
+                    if ((row >=35 && row <=37)||(row==29&&col!=0&&col<5)) {
+                        cellProperties.type = 'date';
+                        cellProperties.dateFormat = 'YYYY-MM-DD';
                     }
-
-                    for (let cell of timeCells) {
-                        if (cell.row == row && cell.col == col) {
-                            cellProperties.type = 'date';
-                            cellProperties.dateFormat = 'YYYY-MM-DD';
-                        }
-                    }
-
-                    // for (let cell of readonlyCells) {
-
-                    //     if (cell.row == row && cell.col == col) {
-                    //         cellProperties.readOnly = true;
-                    //     }
-                    // }
                     return cellProperties;
                 },
             });
@@ -137,8 +103,8 @@
             </div>
 
             <div class="tbname">
-                <p>Production Trial Run Summary Report</p>
-                <p>试作总结报告</p>
+                <p>Project Scope </p>
+                <p>项目范围</p>
             </div>
 
         </div>
@@ -146,8 +112,6 @@
         <div style="margin:0 auto">
             <div id="htable"></div>
         </div>
-
-        <div style="height:30px"></div>
 
     </div>
 </body>
