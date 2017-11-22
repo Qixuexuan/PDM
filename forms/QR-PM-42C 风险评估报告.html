@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>QR-PM-42C 风险评估报告</title>
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">
+
+    <link href="js/handsontable/handsontable.full.css" rel="stylesheet" />
+
+    <script src="Data/QR-PM-42C.js"></script>
+    <script src="js/jquery/jquery-2.2.3.min.js"></script>
+    <script src="js/handsontable/handsontable.full.js"></script>
+
+    <script type="text/javascript">
+        let hot
+        $(document).ready(function() {
+
+            var $container = $('#htable');
+
+            //  单元格内容处理
+            function negativeValueRenderer(instance, td, row, col, prop, value, cellProperties) {
+                Handsontable.renderers.TextRenderer.apply(this, arguments);
+                td.style.textAlign = 'left';
+                td.style.verticalAlign = 'middle';
+                td.style.fontSize = '10px';
+
+                if ((row < 21 && row > 16 && col < 6) ||
+                    (row < 41 && row > 35 && col < 3) ||
+                    (row < 49 && row > 42 && col < 3) ||
+                    (row < 59 && row > 49 && col < 5) ||
+                    (row < 69 && row > 61 && col < 3) ||
+                    (row < 117 && row > 72 && col < 6)||
+                    (row < 130 && row > 120 && col < 11)||
+                    (row < 141 && row > 133 && col < 14)||
+                    (row < 164 && row > 158 && col < 3)) {
+                    td.style.border = '1px solid black';
+                }
+
+            }
+            Handsontable.renderers.registerRenderer('negativeValueRenderer', negativeValueRenderer);
+
+            hot = $container.handsontable({
+                data: financeData,
+                rowHeaders: true,
+                colHeaders: true,
+                contextMenu: false,
+                manualColumnResize: true,
+                manualRowResize: true,
+                stretchH: 'all',
+                autoColumnSize: false,
+                rowHeights: 30,
+                startRows: 0,
+                minRows: 10,
+                maxRows: 100,
+                minSpareRows: 0,
+                mergeCells: mergeCells,
+                cells: function(row, col, prop) {
+                    var cellProperties = {};
+                    cellProperties.renderer = "negativeValueRenderer";
+
+                    return cellProperties;
+                },
+            });
+        });
+
+        function getData() {
+            let handsontable = $("#htable").data('handsontable');
+            let data = handsontable.getData();
+            // console.log(handsontable);
+            console.log(JSON.stringify(handsontable.mergeCells));
+            console.log(JSON.stringify(data));
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="box">
+        <div class="title">
+            <div class="logo">
+                <img src="img/titlelogo.png">
+            </div>
+
+            <div class="tbname">
+                <p>Risk management report</p>
+                <p>风险评估报告</p>
+            </div>
+
+        </div>
+
+        <div style="margin:0 auto">
+            <div id="htable"></div>
+        </div>
+
+    </div>
+</body>
+
+</html>
