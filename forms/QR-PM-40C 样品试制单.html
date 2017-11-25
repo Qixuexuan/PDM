@@ -4,13 +4,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>QR-PM-31D 试作总结报告</title>
+    <title>QR-PM-40C 样品试制单</title>
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">
 
     <link href="js/handsontable/handsontable.full.css" rel="stylesheet" />
 
-    <script src="Data/QR-PM-31D.js"></script>
+    <script src="Data/QR-PM-40C.js"></script>
     <script src="js/jquery/jquery-2.2.3.min.js"></script>
     <script src="js/handsontable/handsontable.full.js"></script>
 
@@ -27,30 +27,40 @@
                 td.style.verticalAlign = 'middle';
                 td.style.fontSize = '13px';
 
-                if (value == "√" || value == "×") {
-                    td.style.fontSize = '18px';
-                    cellProperties.type = 'dropdown';
-                    cellProperties.source = ['√', '×'];
+                if (value == "YES" || value == "NO") {
 
-                    if (value == "√") {
-                        td.style.color = 'green';
+                    if (col != 0 && col != 4 && col != 23 && col != 6 && col != 17) {
+                        td.style.borderRight = 'none';
+                    }
+
+                    cellProperties.type = 'dropdown';
+                    cellProperties.source = ['YES', 'NO'];
+
+                    // cellProperties.type = 'checkbox';
+                    // cellProperties.source = ['YES', 'NO'];
+
+                    if (value == "NO") {
+                        td.style.color = 'red';
+                        td.style.fontWeight = 'bold';
+                    } else if (value == "YES") {
+                        td.style.color = 'Green';
                         td.style.fontWeight = 'bold';
                     }
+                    //    var checkB = document.createElement('h1');
+                    //     Handsontable.dom.empty(td);
+                    //     td.appendChild(checkB);
+                    //     return td;
                 }
 
-                if (value == "是" || value == "否") {
-                    cellProperties.type = 'dropdown';
-                    cellProperties.source = ['是', '否'];
 
-                    if (value == "是") {
-                        td.style.color = 'green';
-                    }
-                }
+                for (let cell of titleCells) {
 
-                for (let cell of marginLeft) {
                     if (cell.row == row && cell.col == col) {
-                        td.style.textAlign = 'left';
+                        td.style.fontWeight = 'bold';
+                        td.style.fontSize = '15px';
+                        td.style.backgroundColor = 'lightgray'
                     }
+
                 }
             }
             Handsontable.renderers.registerRenderer('negativeValueRenderer', negativeValueRenderer);
@@ -63,6 +73,7 @@
                 manualColumnResize: true,
                 manualRowResize: true,
                 stretchH: 'all',
+                colWidths: 20,
                 autoColumnSize: false,
                 rowHeights: 30,
                 startRows: 0,
@@ -73,12 +84,6 @@
                 cells: function(row, col, prop) {
                     var cellProperties = {};
                     cellProperties.renderer = "negativeValueRenderer";
-
-                    for (let cell of numericCells) {
-                        if (cell.row == row && cell.col == col) {
-                            cellProperties.type = 'numeric';
-                        }
-                    }
 
                     for (let cell of timeCells) {
                         if (cell.row == row && cell.col == col) {
@@ -110,8 +115,8 @@
             </div>
 
             <div class="tbname">
-                <p>Production Trial Run Summary Report</p>
-                <p>试作总结报告</p>
+                <p>Sampling Application Form</p>
+                <p>产品质量策划总结和认定</p>
             </div>
 
         </div>
@@ -119,8 +124,6 @@
         <div style="margin:0 auto">
             <div id="htable"></div>
         </div>
-
-        <div style="height:30px"></div>
 
     </div>
 </body>

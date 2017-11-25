@@ -31,14 +31,6 @@
                         td.style.textAlign = 'left';
                     }
 
-                // if (row === 0) {
-                //     td.style.border = 'none';
-                // }
-                // if (row === 1 || row === 12) {
-                //     td.style.textAlign = 'left';
-                //     td.style.fontWeight = 'bold';
-                // }
-
             }
             Handsontable.renderers.registerRenderer('negativeValueRenderer', negativeValueRenderer);
 
@@ -65,11 +57,6 @@
                      if (col == 1 && (row != 0 && row != 1 && row != 2 && row != 43 && row != 44 && row != 45)||(col==0&&row!=1)||row==0||row==2) {
                         cellProperties.readOnly = true;
                     }
-
-                    // if ((col == 5 && (row > 2 && row < 12)) || (col == 8 && (row > 2 && row < 12))) {
-                    //     cellProperties.type = 'date';
-                    //     cellProperties.dateFormat = 'YYYY-MM-DD';
-                    // }
 
                     for (let cell of timeCells) {
                         if (cell.row == row && cell.col == col) {

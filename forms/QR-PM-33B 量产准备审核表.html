@@ -49,14 +49,6 @@
                     }
 
                 }
-
-
-
-                // for (let cell of marginLeft) {
-                //         if (cell.row == row && cell.col == col) {
-                //            td.style.textAlign = 'left';
-                //         }
-                //     }
             }
             Handsontable.renderers.registerRenderer('negativeValueRenderer', negativeValueRenderer);
 
@@ -79,20 +71,6 @@
                     var cellProperties = {};
                     cellProperties.renderer = "negativeValueRenderer";
 
-                    
-
-                    // if ((col == 5 && (row > 2 && row < 12)) || (col == 8 && (row > 2 && row < 12))) {
-                    //     cellProperties.type = 'date';
-                    //     cellProperties.dateFormat = 'YYYY-MM-DD';
-                    // }
-
-                    // for (let cell of numericCells) {
-                    //     if (cell.row == row && cell.col == col) {
-                    //        cellProperties.type = 'numeric';
-                    //     }
-                    // }
-
-
                     for (let cell of timeCells) {
                         if (cell.row == row && cell.col == col) {
                             cellProperties.type = 'date';
@@ -103,13 +81,6 @@
                     if(row>58||(col<6&&row!=0&&row!=1)){
                         cellProperties.readOnly = true;
                     }
-
-                    // for (let cell of readonlyCells) {
-
-                    //     if (cell.row == row && cell.col == col) {
-                    //         cellProperties.readOnly = true;
-                    //     }
-                    // }
                     return cellProperties;
                 },
             });
