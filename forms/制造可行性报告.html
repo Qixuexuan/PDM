@@ -27,8 +27,8 @@
                 td.style.verticalAlign = 'middle';
                 td.style.fontSize = '13px';
 
-                if(col==7&&row==1){
-                    td.style.backgroundColor='yellow'
+                if (col == 7 && row == 1) {
+                    td.style.backgroundColor = 'yellow'
                 }
 
                 for (let cell of titleCells) {
@@ -37,21 +37,21 @@
                         td.style.textAlign = 'left';
                         td.style.fontWeight = 'bold';
                         td.style.fontSize = '15px';
-                        td.style.backgroundColor='yellow'
+                        td.style.backgroundColor = 'yellow'
                     }
 
                 }
 
-                 for (let cell of timeCells) {
-                        if (cell.row == row && cell.col == col) {
-                            cellProperties.type = 'date';
-                            cellProperties.dateFormat = 'YYYY-MM-DD';
-                            td.style.backgroundColor='lightblue';
-                            td.style.borderBottom = 'solid 1px gray';
-                        }
+                for (let cell of timeCells) {
+                    if (cell.row == row && cell.col == col) {
+                        cellProperties.type = 'date';
+                        cellProperties.dateFormat = 'YYYY-MM-DD';
+                        td.style.backgroundColor = 'lightblue';
+                        td.style.borderBottom = 'solid 1px gray';
                     }
+                }
 
-                 if (value == "√" || value == "×") {
+                if (value == "√" || value == "×") {
                     td.style.fontSize = '18px';
                     cellProperties.type = 'dropdown';
                     cellProperties.source = ['√', '×'];
@@ -62,7 +62,7 @@
                     }
                 }
 
-                if(col==2){
+                if (col == 2) {
                     td.style.textAlign = 'left';
                 }
 
@@ -91,7 +91,7 @@
                 manualRowResize: true,
                 stretchH: 'all',
                 autoColumnSize: false,
-                 colWidths: [50, 30],
+                colWidths: [50, 30],
                 rowHeights: 30,
                 startRows: 0,
                 minRows: 10,
@@ -123,7 +123,7 @@
                     //     }
                     // }
 
-                    if(row==24){
+                    if (row == 24) {
                         cellProperties.readOnly = true;
                     }
 
