@@ -30,11 +30,9 @@
                 if ((row > 3 && row < 18) && col == 2) {
                     cellProperties.type = 'dropdown';
                     cellProperties.source = ['是', '否'];
+                    td.style.color = 'red';
+                    td.style.fontWeight = 'bold';
 
-                    if (value == "否") {
-                        td.style.color = 'red';
-                        td.style.fontWeight = 'bold';
-                    }
                 }
 
 
@@ -52,7 +50,7 @@
                     cellProperties.dateFormat = 'YYYY-MM-DD';
                 }
 
-                if((row>3&&row<11&&col==1)||(row>3&&row<11&&col==3)||row==18){
+                if ((row > 3 && row < 11 && col == 1) || (row > 3 && row < 11 && col == 3) || row == 18) {
                     td.style.color = 'red';
                 }
 
