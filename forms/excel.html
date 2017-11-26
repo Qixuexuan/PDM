@@ -103,7 +103,7 @@
 
             hot = $container.handsontable({
                 // data: financeData,
-                data: Handsontable.helper.createSpreadsheetData(47, 35),
+                data: Handsontable.helper.createSpreadsheetData(20, 4),
                 // colHeaders: ['Here', 'B', 'C', 'D', 'E', '时间', 'G', 'H'],
                 rowHeaders: true, //是否显示行头部
                 colHeaders: true, //是否显示列头部
@@ -111,8 +111,9 @@
                 manualColumnResize: true,
                 manualRowResize: true,
                 stretchH: 'all',
-                // colWidths: [100],
-                colWidths: 20,
+                colWidths: [50,200,50,250],
+                // colWidths: 20,
+                rowHeights: 30,
                 autoColumnSize: true, //当值为true且列宽未设置时，自适应列大小
                 // rowHeights: 30,
                 startRows: 0,
