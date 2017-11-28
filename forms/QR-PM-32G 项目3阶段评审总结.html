@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>QR-PM-32G 项目3阶段评审总结</title>
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">
+
+    <link href="js/handsontable/handsontable.full.css" rel="stylesheet" />
+
+    <script src="Data/QR-PM-32G.js"></script>
+    <script src="js/jquery/jquery-2.2.3.min.js"></script>
+    <script src="js/handsontable/handsontable.full.js"></script>
+
+    <script type="text/javascript">
+        let hot
+        $(document).ready(function() {
+
+            var $container = $('#htable');
+
+            //  单元格内容处理
+            function negativeValueRenderer(instance, td, row, col, prop, value, cellProperties) {
+                Handsontable.renderers.TextRenderer.apply(this, arguments);
+                td.style.textAlign = 'center';
+                td.style.verticalAlign = 'middle';
+                td.style.fontSize = '13px';
+
+                if (value == "√" || value == "×") {
+                    td.style.fontSize = '18px';
+                    cellProperties.type = 'dropdown';
+                    cellProperties.source = ['√', '×'];
+                    td.style.color = 'red';
+                }
+
+                if (value == "否" || value == "是" || value == "是/否") {
+                    cellProperties.type = 'dropdown';
+                    cellProperties.source = ['是', '否'];
+                    td.style.color = 'red';
+                    td.style.fontWeight = 'bold';
+                }
+
+
+                for (let cell of noBottomBorderCells) {
+                    if (cell.row == row && cell.col == col) {
+                        td.style.borderBottom = 'none';
+                    }
+                }
+                 for (let cell of marginLeftCells) {
+                    if (cell.row == row && cell.col == col) {
+                        td.style.textAlign = 'left';
+                    }
+                }
+
+                if (row > 3 && row < 37 && col == 0) {
+                    td.style.textAlign = 'left';
+                }
+
+                if (row == 3 || row == 37 || row == 45 || row == 49) {
+                    td.style.fontWeight = 'bold';
+                }
+
+                if(row==50&&col==0){
+                    td.style.backgroundColor = 'yellow';
+                }
+            }
+            Handsontable.renderers.registerRenderer('negativeValueRenderer', negativeValueRenderer);
+
+            hot = $container.handsontable({
+                data: financeData,
+                rowHeaders: true,
+                colHeaders: true,
+                contextMenu: false,
+                manualColumnResize: true,
+                manualRowResize: true,
+                stretchH: 'all',
+                autoColumnSize: false,
+                colWidths: 100,
+                rowHeights: 30,
+                startRows: 0,
+                minRows: 10,
+                maxRows: 100,
+                minSpareRows: 0,
+                mergeCells: mergeCells,
+                cells: function(row, col, prop) {
+                    var cellProperties = {};
+                    cellProperties.renderer = "negativeValueRenderer";
+                     for (let cell of timeCells) {
+                        if (cell.row == row && cell.col == col) {
+                            cellProperties.type = 'date';
+                            cellProperties.dateFormat = 'YYYY-MM-DD';
+                        }
+                    }
+                    return cellProperties;
+                },
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <div class="box">
+        <div class="title">
+            <div class="logo">
+                <img src="img/titlelogo.png">
+            </div>
+
+            <div class="tbname">
+                <p>Project Gate Three Review</p>
+                <p>项目第3阶段评审总结</p>
+            </div>
+
+        </div>
+
+        <div style="margin:0 auto">
+            <div id="htable"></div>
+        </div>
+
+    </div>
+</body>
+
+</html>
