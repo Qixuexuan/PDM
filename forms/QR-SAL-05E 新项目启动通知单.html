@@ -4,13 +4,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>QR-PM-43B 风险管理计划表</title>
+    <title>QR-SAL-05E 新项目启动通知单</title>
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">
 
     <link href="js/handsontable/handsontable.full.css" rel="stylesheet" />
 
-    <script src="Data/QR-PM-43B.js"></script>
+    <script src="Data/QR-SAL-05E.js"></script>
     <script src="js/jquery/jquery-2.2.3.min.js"></script>
     <script src="js/handsontable/handsontable.full.js"></script>
 
@@ -26,52 +26,65 @@
                 td.style.textAlign = 'center';
                 td.style.verticalAlign = 'middle';
                 td.style.fontSize = '13px';
+                td.style.border = 'none';
 
-                // if (value == "YES" || value == "NO") {
-                //     cellProperties.type = 'dropdown';
-                //     cellProperties.source = ['YES', 'NO'];
+                if (value == "YES" || value == "NO" || value == "YES/NO") {
+                    cellProperties.type = 'dropdown';
+                    cellProperties.source = ['YES', 'NO'];
+                    // td.style.color = 'red';
+                    td.style.fontWeight = 'bold';
+                }
 
-                //     if (value == "NO") {
-                //         td.style.color = 'red';
-                //         td.style.fontWeight = 'bold';
-                //     }
-                // }
+                for (let cell of marginLeftCells) {
+                    if (cell.row == row && cell.col == col) {
+                        td.style.textAlign = 'left';
+                    }
+                }
 
+                for (let cell of marginRightCells) {
+                    if (cell.row == row && cell.col == col) {
+                        td.style.textAlign = 'right';
+                    }
+                }
 
-                if ((row > 3 && row < 10)||(row>15&&row<21)&&col<3||(row>21&&row<29)&&col<3||row>29&&row<39) {
+                for (let cell of yellowbgCells) {
+                    if (cell.row == row && cell.col == col) {
+                        td.style.backgroundColor = 'yellow';
+                        td.style.border = '1px solid black';
+                    }
+                }
+
+                if ((row > 13 && row < 18 && col > 4) ||
+                    (row > 21 && row < 24 && col > 4) ||
+                    (row > 24 && row < 31 && col > 4) ||
+                    (row > 32 && row < 37 && col > 4 && col < 13) ||
+                    (row > 38 && row < 42 && col > 4 && col < 14) ||
+                    (row > 43 && row < 48 && col == 5) ||
+                    (row > 43 && row < 48 && col == 9) ||
+                    (row == 50 && col > 5)) {
+                    td.style.backgroundColor = 'yellow';
                     td.style.border = '1px solid black';
                 }
 
-
-                for (let cell of titleCells) {
-                    if (cell.row == row && cell.col == col) {
-                        td.style.textAlign = 'left';
-                        td.style.fontWeight = 'bold';
-                        td.style.fontSize = '15px';
-                    }
+                if ((row == 1 && col == 4) ||
+                    (row == 2 && col == 4) ||
+                    (row == 5 && col == 7) ||
+                    (row == 7 && col == 7) ||
+                    (row > 3 && row < 11 && col == 4)
+                ) {
+                    td.style.border = '1px solid black';
                 }
 
-               
-
-                // for (let cell of marginRight) {
-                //     if (cell.row == row && cell.col == col) {
-                //         td.style.textAlign = 'right';
-                //     }
-                // }
-
-
-
-                for (let cell of marginLeft) {
-                    if (cell.row == row && cell.col == col) {
-                        td.style.textAlign = 'left';
-                    }
+                if ((row == 3 && col == 0) ||
+                    (row == 11 && col == 0)||
+                    (row == 18 && col == 0)||
+                    (row == 48 && col == 0)) {
+                    td.style.border = '1px solid black';
+                    td.style.borderLeft = 'none';
+                    td.style.borderRight = 'none';
                 }
 
-                // for (let cell of noBorderBottomCells) {
-                //     if (cell.row == row && cell.col == col) {
-                //         td.style.borderBottom = 'none';
-                //     }
-                // }
+
             }
             Handsontable.renderers.registerRenderer('negativeValueRenderer', negativeValueRenderer);
 
@@ -84,6 +97,7 @@
                 manualRowResize: true,
                 stretchH: 'all',
                 autoColumnSize: false,
+                colWidths: 20,
                 rowHeights: 30,
                 startRows: 0,
                 minRows: 10,
@@ -93,52 +107,16 @@
                 cells: function(row, col, prop) {
                     var cellProperties = {};
                     cellProperties.renderer = "negativeValueRenderer";
-
-
-
-                    // if ((col == 5 && (row > 2 && row < 12)) || (col == 8 && (row > 2 && row < 12))) {
-                    //     cellProperties.type = 'date';
-                    //     cellProperties.dateFormat = 'YYYY-MM-DD';
-                    // }
-
-                    // for (let cell of numericCells) {
-                    //     if (cell.row == row && cell.col == col) {
-                    //        cellProperties.type = 'numeric';
-                    //     }
-                    // }
-
-
                     for (let cell of timeCells) {
                         if (cell.row == row && cell.col == col) {
                             cellProperties.type = 'date';
                             cellProperties.dateFormat = 'YYYY-MM-DD';
                         }
                     }
-
-
-
-                    // if(row>58||(col<6&&row!=0&&row!=1)){
-                    //     cellProperties.readOnly = true;
-                    // }
-
-                    // for (let cell of readonlyCells) {
-
-                    //     if (cell.row == row && cell.col == col) {
-                    //         cellProperties.readOnly = true;
-                    //     }
-                    // }
                     return cellProperties;
                 },
             });
         });
-
-        function getData() {
-            let handsontable = $("#htable").data('handsontable');
-            let data = handsontable.getData();
-            // console.log(handsontable);
-            console.log(JSON.stringify(handsontable.mergeCells));
-            console.log(JSON.stringify(data));
-        }
     </script>
 
 </head>
@@ -151,8 +129,8 @@
             </div>
 
             <div class="tbname">
-                <p>Risk management plan sheet</p>
-                <p>风险管理计划表</p>
+                <p>New Project Kick-off Notice</p>
+                <p>新项目启动通知单</p>
             </div>
 
         </div>
